@@ -4,7 +4,6 @@ export type {
   FetcherWithComponents,
   FormEncType,
   FormMethod,
-  FormProps,
   Location,
   NavigateFunction,
   Navigation,
@@ -19,12 +18,17 @@ export type {
 } from "react-router-dom";
 export {
   createPath,
+  createRoutesFromChildren,
+  createRoutesFromElements,
+  createSearchParams,
   generatePath,
   matchPath,
   matchRoutes,
   parsePath,
+  renderMatches,
   resolvePath,
-  Form,
+  Navigate,
+  NavigationType,
   Outlet,
   Route,
   Routes,
@@ -35,6 +39,8 @@ export {
   useFetchers,
   useFormAction,
   useHref,
+  useInRouterContext,
+  useLinkClickHandler,
   useLocation,
   useMatch,
   useNavigate,
@@ -46,11 +52,12 @@ export {
   useResolvedPath,
   useRevalidator,
   useRouteError,
+  useRoutes,
   useSearchParams,
   useSubmit,
   useBlocker,
+  useViewTransitionState,
   unstable_usePrompt,
-  unstable_useViewTransitionState,
 } from "react-router-dom";
 export {
   // For use in clientLoader/clientAction
@@ -58,12 +65,15 @@ export {
   json,
   redirect,
   redirectDocument,
+  replace,
+  data,
 } from "@remix-run/server-runtime";
 
 export type { RemixBrowserProps } from "./browser";
 export { RemixBrowser } from "./browser";
 export type {
   AwaitProps,
+  RemixFormProps as FormProps,
   RemixNavLinkProps as NavLinkProps,
   RemixLinkProps as LinkProps,
   UIMatch,
@@ -73,6 +83,7 @@ export {
   Meta,
   Links,
   Scripts,
+  Form,
   Link,
   NavLink,
   PrefetchPageLinks,
@@ -92,6 +103,7 @@ export type {
   ClientLoaderFunction,
   ClientLoaderFunctionArgs,
   MetaArgs,
+  MetaMatch as UNSAFE_MetaMatch,
   MetaDescriptor,
   MetaFunction,
   RouteModules as UNSAFE_RouteModules,

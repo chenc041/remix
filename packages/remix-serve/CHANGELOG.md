@@ -1,5 +1,180 @@
 # `@remix-run/serve`
 
+## 2.15.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/node@2.15.3`
+  - `@remix-run/express@2.15.3`
+
+## 2.15.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/express@2.15.2`
+  - `@remix-run/node@2.15.2`
+
+## 2.15.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/express@2.15.1`
+  - `@remix-run/node@2.15.1`
+
+## 2.15.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/express@2.15.0`
+  - `@remix-run/node@2.15.0`
+
+## 2.14.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/node@2.14.0`
+  - `@remix-run/express@2.14.0`
+
+## 2.13.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/express@2.13.1`
+  - `@remix-run/node@2.13.1`
+
+## 2.13.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/express@2.13.0`
+  - `@remix-run/node@2.13.0`
+
+## 2.12.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/node@2.12.1`
+  - `@remix-run/express@2.12.1`
+
+## 2.12.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/node@2.12.0`
+  - `@remix-run/express@2.12.0`
+
+## 2.11.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/node@2.11.2`
+  - `@remix-run/express@2.11.2`
+
+## 2.11.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/node@2.11.1`
+  - `@remix-run/express@2.11.1`
+
+## 2.11.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/node@2.11.0`
+  - `@remix-run/express@2.11.0`
+
+## 2.10.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/express@2.10.3`
+  - `@remix-run/node@2.10.3`
+
+## 2.10.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/node@2.10.2`
+  - `@remix-run/express@2.10.2`
+
+## 2.10.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/express@2.10.1`
+  - `@remix-run/node@2.10.1`
+
+## 2.10.0
+
+### Patch Changes
+
+- Upgrade `express` dependency to `^4.19.2` ([#9184](https://github.com/remix-run/remix/pull/9184))
+- Updated dependencies:
+  - `@remix-run/express@2.10.0`
+  - `@remix-run/node@2.10.0`
+
+## 2.9.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/node@2.9.2`
+  - `@remix-run/express@2.9.2`
+
+## 2.9.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/express@2.9.1`
+  - `@remix-run/node@2.9.1`
+
+## 2.9.0
+
+### Minor Changes
+
+- Put `undici` fetch polyfill behind a new `installGlobals({ nativeFetch: true })` parameter ([#9198](https://github.com/remix-run/remix/pull/9198))
+  - `remix-serve` will default to using `undici` for the fetch polyfill if `future.unstable_singleFetch` is enabled because the single fetch implementation relies on the `undici` polyfill
+  - Any users opting into Single Fetch and managing their own polyfill will need to pass the flag to `installGlobals` on their own to avoid runtime errors with Single Fetch
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/node@2.9.0`
+  - `@remix-run/express@2.9.0`
+
+## 2.8.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/express@2.8.1`
+  - `@remix-run/node@2.8.1`
+
+## 2.8.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - `@remix-run/express@2.8.0`
+  - `@remix-run/node@2.8.0`
+
 ## 2.7.2
 
 ### Patch Changes
@@ -341,10 +516,10 @@
 
   Documentation Resources (better docs specific to Remix are in the works):
 
-  - <https://reactrouter.com/en/main/utils/defer>
-  - <https://reactrouter.com/en/main/components/await>
-  - <https://reactrouter.com/en/main/hooks/use-async-value>
-  - <https://reactrouter.com/en/main/hooks/use-async-error>
+  - <https://reactrouter.com/v6/utils/defer>
+  - <https://reactrouter.com/v6/components/await>
+  - <https://reactrouter.com/v6/hooks/use-async-value>
+  - <https://reactrouter.com/v6/hooks/use-async-error>
 
 - Updated dependencies:
   - `@remix-run/express@1.11.0`

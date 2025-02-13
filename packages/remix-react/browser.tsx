@@ -1,16 +1,12 @@
-import {
-  createBrowserHistory,
-  createRouter,
-  type HydrationState,
-  type Router,
-} from "@remix-run/router";
+import type { HydrationState, Router } from "@remix-run/router";
+import { createBrowserHistory, createRouter } from "@remix-run/router";
 import type { ReactElement } from "react";
 import * as React from "react";
 import { UNSAFE_mapRouteProperties as mapRouteProperties } from "react-router";
 import { matchRoutes, RouterProvider } from "react-router-dom";
 
 import { RemixContext } from "./components";
-import type { EntryContext, FutureConfig } from "./entry";
+import type { AssetsManifest, FutureConfig } from "./entry";
 import { RemixErrorBoundary } from "./errorBoundaries";
 import { deserializeErrors } from "./errors";
 import type { RouteModules } from "./routeModules";
@@ -19,16 +15,26 @@ import {
   createClientRoutesWithHMRRevalidationOptOut,
   shouldHydrateRouteLoader,
 } from "./routes";
+import {
+  decodeViaTurboStream,
+  getSingleFetchDataStrategy,
+} from "./single-fetch";
+import invariant from "./invariant";
+import {
+  getPatchRoutesOnNavigationFunction,
+  useFogOFWarDiscovery,
+} from "./fog-of-war";
 
 /* eslint-disable prefer-let/prefer-let */
 declare global {
   var __remixContext: {
-    url: string;
     basename?: string;
     state: HydrationState;
     criticalCss?: string;
     future: FutureConfig;
     isSpaMode: boolean;
+    stream: ReadableStream<Uint8Array> | undefined;
+    streamController: ReadableStreamDefaultController<Uint8Array>;
     // The number of active deferred keys rendered on the server
     a?: number;
     dev?: {
@@ -38,8 +44,9 @@ declare global {
   };
   var __remixRouter: Router;
   var __remixRouteModules: RouteModules;
-  var __remixManifest: EntryContext["manifest"];
+  var __remixManifest: AssetsManifest;
   var __remixRevalidation: number | undefined;
+  var __remixHdrActive: boolean;
   var __remixClearCriticalCss: (() => void) | undefined;
   var $RefreshRuntime$: {
     performReactRefresh: () => void;
@@ -49,6 +56,12 @@ declare global {
 
 export interface RemixBrowserProps {}
 
+let stateDecodingPromise:
+  | (Promise<void> & {
+      value?: unknown;
+      error?: unknown;
+    })
+  | undefined;
 let router: Router;
 let routerInitialized = false;
 let hmrAbortController: AbortController | undefined;
@@ -75,7 +88,7 @@ if (import.meta && import.meta.hot) {
       assetsManifest,
       needsRevalidation,
     }: {
-      assetsManifest: EntryContext["manifest"];
+      assetsManifest: AssetsManifest;
       needsRevalidation: Set<string>;
     }) => {
       let router = await hmrRouterReadyPromise;
@@ -184,27 +197,32 @@ if (import.meta && import.meta.hot) {
  */
 export function RemixBrowser(_props: RemixBrowserProps): ReactElement {
   if (!router) {
-    // Hard reload if the path we tried to load is not the current path.
-    // This is usually the result of 2 rapid back/forward clicks from an
-    // external site into a Remix app, where we initially start the load for
-    // one URL and while the JS chunks are loading a second forward click moves
-    // us to a new URL.  Avoid comparing search params because of CDNs which
-    // can be configured to ignore certain params and only pathname is relevant
-    // towards determining the route matches.
-    let initialPathname = window.__remixContext.url;
-    let hydratedPathname = window.location.pathname;
-    if (
-      initialPathname !== hydratedPathname &&
-      !window.__remixContext.isSpaMode
-    ) {
-      let errorMsg =
-        `Initial URL (${initialPathname}) does not match URL at time of hydration ` +
-        `(${hydratedPathname}), reloading page...`;
-      console.error(errorMsg);
-      window.location.reload();
-      // Get out of here so the reload can happen - don't create the router
-      // since it'll then kick off unnecessary route.lazy() loads
-      return <></>;
+    // When single fetch is enabled, we need to suspend until the initial state
+    // snapshot is decoded into window.__remixContext.state
+    if (window.__remixContext.future.v3_singleFetch) {
+      // Note: `stateDecodingPromise` is not coupled to `router` - we'll reach this
+      // code potentially many times waiting for our state to arrive, but we'll
+      // then only get past here and create the `router` one time
+      if (!stateDecodingPromise) {
+        let stream = window.__remixContext.stream;
+        invariant(stream, "No stream found for single fetch decoding");
+        window.__remixContext.stream = undefined;
+        stateDecodingPromise = decodeViaTurboStream(stream, window)
+          .then((value) => {
+            window.__remixContext.state =
+              value.value as typeof window.__remixContext.state;
+            stateDecodingPromise!.value = true;
+          })
+          .catch((e) => {
+            stateDecodingPromise!.error = e;
+          });
+      }
+      if (stateDecodingPromise.error) {
+        throw stateDecodingPromise.error;
+      }
+      if (!stateDecodingPromise.value) {
+        throw stateDecodingPromise;
+      }
     }
 
     let routes = createClientRoutes(
@@ -227,7 +245,11 @@ export function RemixBrowser(_props: RemixBrowserProps): ReactElement {
         ...window.__remixContext.state,
         loaderData: { ...window.__remixContext.state.loaderData },
       };
-      let initialMatches = matchRoutes(routes, window.location);
+      let initialMatches = matchRoutes(
+        routes,
+        window.location,
+        window.__remixContext.basename
+      );
       if (initialMatches) {
         for (let match of initialMatches) {
           let routeId = match.route.id;
@@ -275,9 +297,26 @@ export function RemixBrowser(_props: RemixBrowserProps): ReactElement {
         v7_partialHydration: true,
         v7_prependBasename: true,
         v7_relativeSplatPath: window.__remixContext.future.v3_relativeSplatPath,
+        // Single fetch enables this underlying behavior
+        v7_skipActionErrorRevalidation:
+          window.__remixContext.future.v3_singleFetch === true,
       },
       hydrationData,
       mapRouteProperties,
+      dataStrategy: window.__remixContext.future.v3_singleFetch
+        ? getSingleFetchDataStrategy(
+            window.__remixManifest,
+            window.__remixRouteModules,
+            () => router
+          )
+        : undefined,
+      patchRoutesOnNavigation: getPatchRoutesOnNavigationFunction(
+        window.__remixManifest,
+        window.__remixRouteModules,
+        window.__remixContext.future,
+        window.__remixContext.isSpaMode,
+        window.__remixContext.basename
+      ),
     });
 
     // We can call initialize() immediately if the router doesn't have any
@@ -300,7 +339,7 @@ export function RemixBrowser(_props: RemixBrowserProps): ReactElement {
   // Critical CSS can become stale after code changes, e.g. styles might be
   // removed from a component, but the styles will still be present in the
   // server HTML. This allows our HMR logic to clear the critical CSS state.
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+
   let [criticalCss, setCriticalCss] = React.useState(
     process.env.NODE_ENV === "development"
       ? window.__remixContext.criticalCss
@@ -313,10 +352,9 @@ export function RemixBrowser(_props: RemixBrowserProps): ReactElement {
   // This is due to the short circuit return above when the pathname doesn't
   // match and we force a hard reload.  This is an exceptional scenario in which
   // we can't hydrate anyway.
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+
   let [location, setLocation] = React.useState(router.state.location);
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   React.useLayoutEffect(() => {
     // If we had to run clientLoaders on hydration, we delay initialization until
     // after we've hydrated to avoid hydration issues from synchronous client loaders
@@ -326,7 +364,6 @@ export function RemixBrowser(_props: RemixBrowserProps): ReactElement {
     }
   }, []);
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   React.useLayoutEffect(() => {
     return router.subscribe((newState) => {
       if (newState.location !== location) {
@@ -335,27 +372,44 @@ export function RemixBrowser(_props: RemixBrowserProps): ReactElement {
     });
   }, [location]);
 
+  useFogOFWarDiscovery(
+    router,
+    window.__remixManifest,
+    window.__remixRouteModules,
+    window.__remixContext.future,
+    window.__remixContext.isSpaMode
+  );
+
   // We need to include a wrapper RemixErrorBoundary here in case the root error
   // boundary also throws and we need to bubble up outside of the router entirely.
   // Then we need a stateful location here so the user can back-button navigate
   // out of there
   return (
-    <RemixContext.Provider
-      value={{
-        manifest: window.__remixManifest,
-        routeModules: window.__remixRouteModules,
-        future: window.__remixContext.future,
-        criticalCss,
-        isSpaMode: window.__remixContext.isSpaMode,
-      }}
-    >
-      <RemixErrorBoundary location={location}>
-        <RouterProvider
-          router={router}
-          fallbackElement={null}
-          future={{ v7_startTransition: true }}
-        />
-      </RemixErrorBoundary>
-    </RemixContext.Provider>
+    // This fragment is important to ensure we match the <RemixServer> JSX
+    // structure so that useId values hydrate correctly
+    <>
+      <RemixContext.Provider
+        value={{
+          manifest: window.__remixManifest,
+          routeModules: window.__remixRouteModules,
+          future: window.__remixContext.future,
+          criticalCss,
+          isSpaMode: window.__remixContext.isSpaMode,
+        }}
+      >
+        <RemixErrorBoundary location={location}>
+          <RouterProvider
+            router={router}
+            fallbackElement={null}
+            future={{ v7_startTransition: true }}
+          />
+        </RemixErrorBoundary>
+      </RemixContext.Provider>
+      {/*
+        This fragment is important to ensure we match the <RemixServer> JSX
+        structure so that useId values hydrate correctly
+      */}
+      {window.__remixContext.future.v3_singleFetch ? <></> : null}
+    </>
   );
 }

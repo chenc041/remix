@@ -213,7 +213,7 @@ Here is a full example showing how you can create utility functions that throw r
 ```ts filename=app/db.ts
 import { json } from "@remix-run/node"; // or cloudflare/deno
 
-export function getInvoice(id, user) {
+export function getInvoice(id) {
   const invoice = db.invoice.find({ where: { id } });
   if (invoice === null) {
     throw json("Not Found", { status: 404 });
@@ -248,6 +248,7 @@ import { json } from "@remix-run/node"; // or cloudflare/deno
 import {
   isRouteErrorResponse,
   useLoaderData,
+  useRouteError,
 } from "@remix-run/react";
 
 import { getInvoice } from "~/db";

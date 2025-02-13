@@ -13,83 +13,178 @@ We manage release notes in this file instead of the paginated Github Releases Pa
   <summary>Table of Contents</summary>
 
 - [Remix Releases](#remix-releases)
-  - [2.7.2](#272)
+  - [v2.15.3](#v2153)
     - [Patch Changes](#patch-changes)
-  - [2.7.1](#271)
+    - [Updated Dependencies](#updated-dependencies)
+  - [v2.15.2](#v2152)
     - [Patch Changes](#patch-changes-1)
-  - [v2.7.0](#v270)
+    - [Updated Dependencies](#updated-dependencies-1)
+  - [v2.15.1](#v2151)
+    - [Patch Changes](#patch-changes-2)
+  - [v2.15.0](#v2150)
+    - [Patch Changes](#patch-changes-3)
+  - [v2.14.0](#v2140)
+    - [Minor Changes](#minor-changes)
+    - [Patch Changes](#patch-changes-4)
+    - [Updated Dependencies](#updated-dependencies-2)
+    - [Changes by Package](#changes-by-package)
+  - [v2.13.1](#v2131)
+    - [Patch Changes](#patch-changes-5)
+  - [v2.13.0](#v2130)
     - [What's Changed](#whats-changed)
+      - [Stabilized APIs](#stabilized-apis)
+    - [Minor Changes](#minor-changes-1)
+    - [Patch Changes](#patch-changes-6)
+    - [Updated Dependencies](#updated-dependencies-3)
+    - [Changes by Package](#changes-by-package-1)
+  - [v2.12.1](#v2121)
+    - [Patch Changes](#patch-changes-7)
+    - [Changes by Package](#changes-by-package-2)
+  - [v2.12.0](#v2120)
+    - [What's Changed](#whats-changed-1)
+      - [Future Flag for Automatic Dependency Optimization (unstable)](#future-flag-for-automatic-dependency-optimization-unstable)
+      - [Improved Single Fetch Type Safety (unstable)](#improved-single-fetch-type-safety-unstable)
+      - [Updates to Single Fetch Revalidation Behavior (unstable)](#updates-to-single-fetch-revalidation-behavior-unstable)
+    - [Minor Changes](#minor-changes-2)
+    - [Patch Changes](#patch-changes-8)
+    - [Updated Dependencies](#updated-dependencies-4)
+    - [Changes by Package](#changes-by-package-3)
+  - [v2.11.2](#v2112)
+    - [Patch Changes](#patch-changes-9)
+    - [Updated Dependencies](#updated-dependencies-5)
+    - [Changes by Package](#changes-by-package-4)
+  - [v2.11.1](#v2111)
+    - [Patch Changes](#patch-changes-10)
+    - [Changes by Package](#changes-by-package-5)
+  - [v2.11.0](#v2110)
+    - [What's Changed](#whats-changed-2)
+      - [Renamed `unstable_fogOfWar` future flag to `unstable_lazyRouteDiscovery` (unstable)](#renamed-unstable_fogofwar-future-flag-to-unstable_lazyroutediscovery-unstable)
+      - [Removed `response` stub in Single Fetch (unstable)](#removed-response-stub-in-single-fetch-unstable)
+    - [Minor Changes](#minor-changes-3)
+    - [Patch Changes](#patch-changes-11)
+    - [Updated Dependencies](#updated-dependencies-6)
+    - [Changes by Package](#changes-by-package-6)
+  - [v2.10.3](#v2103)
+    - [Patch Changes](#patch-changes-12)
+    - [Updated Dependencies](#updated-dependencies-7)
+    - [Changes by Package](#changes-by-package-7)
+  - [v2.10.2](#v2102)
+    - [Patch Changes](#patch-changes-13)
+    - [Changes by Package](#changes-by-package-8)
+  - [v2.10.1](#v2101)
+    - [Patch Changes](#patch-changes-14)
+    - [Updated Dependencies](#updated-dependencies-8)
+    - [Changes by Package](#changes-by-package-9)
+  - [v2.10.0](#v2100)
+    - [What's Changed](#whats-changed-3)
+      - [Lazy Route Discovery (a.k.a. "Fog of War")](#lazy-route-discovery-aka-fog-of-war)
+    - [Minor Changes](#minor-changes-4)
+    - [Patch Changes](#patch-changes-15)
+    - [Updated Dependencies](#updated-dependencies-9)
+    - [Changes by Package](#changes-by-package-10)
+  - [v2.9.2](#v292)
+    - [What's Changed](#whats-changed-4)
+      - [Updated Type-Safety for Single Fetch](#updated-type-safety-for-single-fetch)
+    - [Patch Changes](#patch-changes-16)
+    - [Updated Dependencies](#updated-dependencies-10)
+    - [Changes by Package](#changes-by-package-11)
+  - [v2.9.1](#v291)
+    - [Patch Changes](#patch-changes-17)
+    - [Changes by Package](#changes-by-package-12)
+  - [v2.9.0](#v290)
+    - [What's Changed](#whats-changed-5)
+      - [Single Fetch (unstable)](#single-fetch-unstable)
+      - [Undici](#undici)
+    - [Minor Changes](#minor-changes-5)
+    - [Patch Changes](#patch-changes-18)
+    - [Updated Dependencies](#updated-dependencies-11)
+    - [Changes by Package](#changes-by-package-13)
+  - [v2.8.1](#v281)
+    - [Patch Changes](#patch-changes-19)
+    - [Updated Dependencies](#updated-dependencies-12)
+    - [Changes by Package](#changes-by-package-14)
+  - [v2.8.0](#v280)
+    - [Minor Changes](#minor-changes-6)
+    - [Patch Changes](#patch-changes-20)
+    - [Updated Dependencies](#updated-dependencies-13)
+    - [Changes by Package](#changes-by-package-15)
+  - [2.7.2](#272)
+    - [Patch Changes](#patch-changes-21)
+  - [2.7.1](#271)
+    - [Patch Changes](#patch-changes-22)
+  - [v2.7.0](#v270)
+    - [What's Changed](#whats-changed-6)
       - [Stabilized Vite Plugin](#stabilized-vite-plugin)
       - [New `Layout` Export](#new-layout-export)
       - [Basename support](#basename-support)
       - [Cloudflare Proxy as a Vite Plugin](#cloudflare-proxy-as-a-vite-plugin)
-    - [Minor Changes](#minor-changes)
-    - [Patch Changes](#patch-changes-2)
-    - [Updated Dependencies](#updated-dependencies)
-    - [Changes by Package](#changes-by-package)
+    - [Minor Changes](#minor-changes-7)
+    - [Patch Changes](#patch-changes-23)
+    - [Updated Dependencies](#updated-dependencies-14)
+    - [Changes by Package](#changes-by-package-16)
   - [v2.6.0](#v260)
-    - [What's Changed](#whats-changed-1)
+    - [What's Changed](#whats-changed-7)
       - [Unstable Vite Plugin updates](#unstable-vite-plugin-updates)
-    - [Minor Changes](#minor-changes-1)
-    - [Patch Changes](#patch-changes-3)
-    - [Updated Dependencies](#updated-dependencies-1)
-    - [Changes by Package](#changes-by-package-1)
+    - [Minor Changes](#minor-changes-8)
+    - [Patch Changes](#patch-changes-24)
+    - [Updated Dependencies](#updated-dependencies-15)
+    - [Changes by Package](#changes-by-package-17)
   - [v2.5.1](#v251)
-    - [Patch Changes](#patch-changes-4)
-    - [Updated Dependencies](#updated-dependencies-2)
-    - [Changes by Package](#changes-by-package-2)
+    - [Patch Changes](#patch-changes-25)
+    - [Updated Dependencies](#updated-dependencies-16)
+    - [Changes by Package](#changes-by-package-18)
   - [v2.5.0](#v250)
-    - [What's Changed](#whats-changed-2)
+    - [What's Changed](#whats-changed-8)
       - [SPA Mode (unstable)](#spa-mode-unstable)
       - [Server Bundles (unstable)](#server-bundles-unstable)
-    - [Minor Changes](#minor-changes-2)
-    - [Patch Changes](#patch-changes-5)
-    - [Updated Dependencies](#updated-dependencies-3)
-    - [Changes by Package](#changes-by-package-3)
+    - [Minor Changes](#minor-changes-9)
+    - [Patch Changes](#patch-changes-26)
+    - [Updated Dependencies](#updated-dependencies-17)
+    - [Changes by Package](#changes-by-package-19)
   - [v2.4.1](#v241)
-    - [Patch Changes](#patch-changes-6)
-    - [Updated Dependencies](#updated-dependencies-4)
-    - [Changes by Package](#changes-by-package-4)
+    - [Patch Changes](#patch-changes-27)
+    - [Updated Dependencies](#updated-dependencies-18)
+    - [Changes by Package](#changes-by-package-20)
   - [v2.4.0](#v240)
-    - [What's Changed](#whats-changed-3)
+    - [What's Changed](#whats-changed-9)
       - [Client Data](#client-data)
       - [`future.v3_relativeSplatPath`](#futurev3_relativesplatpath)
       - [Vite Updates (Unstable)](#vite-updates-unstable)
-    - [Minor Changes](#minor-changes-3)
-    - [Patch Changes](#patch-changes-7)
-    - [Updated Dependencies](#updated-dependencies-5)
-    - [Changes by Package](#changes-by-package-5)
+    - [Minor Changes](#minor-changes-10)
+    - [Patch Changes](#patch-changes-28)
+    - [Updated Dependencies](#updated-dependencies-19)
+    - [Changes by Package](#changes-by-package-21)
   - [v2.3.1](#v231)
-    - [Patch Changes](#patch-changes-8)
-    - [Updated Dependencies](#updated-dependencies-6)
-    - [Changes by Package](#changes-by-package-6)
+    - [Patch Changes](#patch-changes-29)
+    - [Updated Dependencies](#updated-dependencies-20)
+    - [Changes by Package](#changes-by-package-22)
   - [v2.3.0](#v230)
-    - [What's Changed](#whats-changed-4)
+    - [What's Changed](#whats-changed-10)
       - [Stabilized `useBlocker`](#stabilized-useblocker)
       - [`unstable_flushSync` API](#unstable_flushsync-api)
-    - [Minor Changes](#minor-changes-4)
-    - [Patch Changes](#patch-changes-9)
-    - [Updated Dependencies](#updated-dependencies-7)
-    - [Changes by Package](#changes-by-package-7)
+    - [Minor Changes](#minor-changes-11)
+    - [Patch Changes](#patch-changes-30)
+    - [Updated Dependencies](#updated-dependencies-21)
+    - [Changes by Package](#changes-by-package-23)
   - [v2.2.0](#v220)
-    - [What's Changed](#whats-changed-5)
+    - [What's Changed](#whats-changed-11)
       - [Vite!](#vite)
       - [New Fetcher APIs](#new-fetcher-apis)
       - [Persistence Future Flag](#persistence-future-flag)
-    - [Minor Changes](#minor-changes-5)
-    - [Patch Changes](#patch-changes-10)
-    - [Updated Dependencies](#updated-dependencies-8)
-    - [Changes by Package](#changes-by-package-8)
+    - [Minor Changes](#minor-changes-12)
+    - [Patch Changes](#patch-changes-31)
+    - [Updated Dependencies](#updated-dependencies-22)
+    - [Changes by Package](#changes-by-package-24)
   - [v2.1.0](#v210)
-    - [What's Changed](#whats-changed-6)
+    - [What's Changed](#whats-changed-12)
       - [View Transitions](#view-transitions)
       - [Stable `createRemixStub`](#stable-createremixstub)
-    - [Minor Changes](#minor-changes-6)
-    - [Patch Changes](#patch-changes-11)
-    - [Updated Dependencies](#updated-dependencies-9)
-    - [Changes by Package](#changes-by-package-9)
+    - [Minor Changes](#minor-changes-13)
+    - [Patch Changes](#patch-changes-32)
+    - [Updated Dependencies](#updated-dependencies-23)
+    - [Changes by Package](#changes-by-package-25)
   - [v2.0.1](#v201)
-    - [Patch Changes](#patch-changes-12)
+    - [Patch Changes](#patch-changes-33)
     - [Changes by Package 🔗](#changes-by-package-)
   - [v2.0.0](#v200)
     - [Breaking Changes](#breaking-changes)
@@ -101,8 +196,8 @@ We manage release notes in this file instead of the paginated Github Releases Pa
         - [Breaking Type Changes](#breaking-type-changes)
     - [New Features](#new-features)
     - [Other Notable Changes](#other-notable-changes)
-    - [Updated Dependencies](#updated-dependencies-10)
-    - [Changes by Package](#changes-by-package-10)
+    - [Updated Dependencies](#updated-dependencies-24)
+    - [Changes by Package](#changes-by-package-26)
 
 </details>
 
@@ -140,8 +235,11 @@ Date: YYYY-MM-DD
 - [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.X.Y/packages/remix-dev/CHANGELOG.md#2XY)
 - [`@remix-run/eslint-config`](https://github.com/remix-run/remix/blob/remix%402.X.Y/packages/remix-eslint-config/CHANGELOG.md#2XY)
 - [`@remix-run/express`](https://github.com/remix-run/remix/blob/remix%402.X.Y/packages/remix-express/CHANGELOG.md#2XY)
+- [`@remix-run/fs-routes`](https://github.com/remix-run/remix/blob/remix%402.X.Y/packages/remix-fs-routes/CHANGELOG.md#2XY)
 - [`@remix-run/node`](https://github.com/remix-run/remix/blob/remix%402.X.Y/packages/remix-node/CHANGELOG.md#2XY)
 - [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.X.Y/packages/remix-react/CHANGELOG.md#2XY)
+- [`@remix-run/route-config`](https://github.com/remix-run/remix/blob/remix%402.X.Y/packages/remix-route-config/CHANGELOG.md#2XY)
+- [`@remix-run/routes-option-adapter`](https://github.com/remix-run/remix/blob/remix%402.X.Y/packages/remix-routes-option-adapter/CHANGELOG.md#2XY)
 - [`@remix-run/serve`](https://github.com/remix-run/remix/blob/remix%402.X.Y/packages/remix-serve/CHANGELOG.md#2XY)
 - [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.X.Y/packages/remix-server-runtime/CHANGELOG.md#2XY)
 - [`@remix-run/testing`](https://github.com/remix-run/remix/blob/remix%402.X.Y/packages/remix-testing/CHANGELOG.md#2XY)
@@ -150,13 +248,840 @@ Date: YYYY-MM-DD
 
 -->
 
+## v2.15.3
+
+Date: 2025-01-30
+
+### Patch Changes
+
+- `@remix-run/react` - Properly handle interrupted manifest requests in lazy route discovery ([#10447](https://github.com/remix-run/remix/pull/10447))
+- `@remix-run/server-runtime` - Avoid duplication of `Set-Cookie` headers if also returned from `headers` ([#10424](https://github.com/remix-run/remix/pull/10424))
+- `@remix-run/server-runtime` - Properly handle status codes that cannot have a body in single fetch responses (204, etc.) ([#10410](https://github.com/remix-run/remix/pull/10410))
+
+### Updated Dependencies
+
+- [`react-router-dom@6.29.0`](https://github.com/remix-run/react-router/releases/tag/react-router%406.29.0)
+
+**Full Changelog**: [`v2.15.2...v2.15.3`](https://github.com/remix-run/remix/compare/remix@2.15.2...remix@2.15.3)
+
+## v2.15.2
+
+Date: 2024-12-20
+
+### Patch Changes
+
+- `@remix-run/dev` - Allow suppression of future flag warnings by setting them to `false` ([#10358](https://github.com/remix-run/remix/pull/10358))
+- `@remix-run/react` - Throw unwrapped Single Fetch `redirect` to align with pre-Single Fetch behavior ([#10317](https://github.com/remix-run/remix/pull/10317))
+
+### Updated Dependencies
+
+- [`react-router-dom@6.28.1`](https://github.com/remix-run/react-router/releases/tag/react-router%406.28.1)
+
+**Full Changelog**: [`v2.15.1...v2.15.2`](https://github.com/remix-run/remix/compare/remix@2.15.1...remix@2.15.2)
+
+## v2.15.1
+
+Date: 2024-12-09
+
+### Patch Changes
+
+- `create-remix` - Move `fs-extra` from `devDependencies` to `dependencies` ([#10300](https://github.com/remix-run/remix/pull/10300))
+
+**Full Changelog**: [`v2.15.0...v2.15.1`](https://github.com/remix-run/remix/compare/remix@2.15.0...remix@2.15.1)
+
+## v2.15.0
+
+Date: 2024-11-19
+
+### Patch Changes
+
+- Stabilize the `future.v3_routeConfig` future flag, replacing `future.unstable_routeConfig`. This enables support for `routes.ts` to assist with the migration to React Router v7. ([#10236](https://github.com/remix-run/remix/pull/10236))
+
+  Note that if you had already enabled the `future.unstable_routeConfig` flag, your route config in `app/routes.ts` is no longer defined via the `routes` export and must now be defined via the default export.
+
+  ```diff
+  import { type RouteConfig } from "@remix-run/route-config";
+
+  -export const routes: RouteConfig = [];
+  +export default [] satisfies RouteConfig;
+  ```
+
+## v2.14.0
+
+Date: 2024-11-08
+
+### Minor Changes
+
+- Deprecate `SerializeFrom` in favor of generics because it will be removed in React Router v7 ([#10173](https://github.com/remix-run/remix/pull/10173))
+- Add deprecation warning to `@remix-run/eslint-config` ([#10174](https://github.com/remix-run/remix/pull/10174))
+- Add support for `routes.ts` behind `future.unstable_routeConfig` flag to assist with the migration to React Router v7. ([#10107](https://github.com/remix-run/remix/pull/10107))
+
+  Config-based routing is the new default in React Router v7, configured via the `routes.ts` file in the app directory. Support for `routes.ts` and its related APIs in Remix are designed as a migration path to help minimize the number of changes required when moving your Remix project over to React Router v7. While some new packages have been introduced within the `@remix-run` scope, these new packages only exist to keep the code in `routes.ts` as similar as possible to the equivalent code for React Router v7.
+
+  When the `unstable_routeConfig` future flag is enabled, Remix's built-in file system routing will be disabled and your project will opted into React Router v7's config-based routing.
+
+  To enable the flag, in your `vite.config.ts` file:
+
+  ```ts
+  remix({
+    future: {
+      unstable_routeConfig: true,
+    },
+  });
+  ```
+
+  A minimal `routes.ts` file to support Remix's built-in file system routing looks like this:
+
+  ```ts
+  // app/routes.ts
+  import { flatRoutes } from "@remix-run/fs-routes";
+  import type { RouteConfig } from "@remix-run/route-config";
+
+  export const routes: RouteConfig = flatRoutes();
+  ```
+
+- Log deprecation warnings for v3 future flags ([#10126](https://github.com/remix-run/remix/pull/10126))
+  - Add `@deprecated` annotations to `json`/`defer` utilities
+
+### Patch Changes
+
+- `@remix-run/react` - Fix `defaultShouldRevalidate` value when using Single Fetch ([#10139](https://github.com/remix-run/remix/pull/10139))
+- `@remix-run/server-runtime` - Update externally-accessed resource routes warning to cover `null` usage as well ([#10145](https://github.com/remix-run/remix/pull/10145))
+
+### Updated Dependencies
+
+- [`react-router-dom@6.28.0`](https://github.com/remix-run/react-router/releases/tag/react-router%406.28.0)
+- [`@remix-run/router@1.21.0`](https://github.com/remix-run/react-router/blob/main/packages/router/CHANGELOG.md#1210)
+
+### Changes by Package
+
+- [`create-remix`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/create-remix/CHANGELOG.md#2140)
+- [`@remix-run/architect`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-architect/CHANGELOG.md#2140)
+- [`@remix-run/cloudflare`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-cloudflare/CHANGELOG.md#2140)
+- [`@remix-run/cloudflare-pages`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-cloudflare-pages/CHANGELOG.md#2140)
+- [`@remix-run/cloudflare-workers`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-cloudflare-workers/CHANGELOG.md#2140)
+- [`@remix-run/css-bundle`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-css-bundle/CHANGELOG.md#2140)
+- [`@remix-run/deno`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-deno/CHANGELOG.md#2140)
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-dev/CHANGELOG.md#2140)
+- [`@remix-run/eslint-config`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-eslint-config/CHANGELOG.md#2140)
+- [`@remix-run/express`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-express/CHANGELOG.md#2140)
+- [`@remix-run/fs-routes`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-fs-routes/CHANGELOG.md#2140)
+- [`@remix-run/node`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-node/CHANGELOG.md#2140)
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-react/CHANGELOG.md#2140)
+- [`@remix-run/route-config`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-route-config/CHANGELOG.md#2140)
+- [`@remix-run/routes-option-adapter`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-routes-option-adapter/CHANGELOG.md#2140)
+- [`@remix-run/serve`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-serve/CHANGELOG.md#2140)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-server-runtime/CHANGELOG.md#2140)
+- [`@remix-run/testing`](https://github.com/remix-run/remix/blob/remix%402.14.0/packages/remix-testing/CHANGELOG.md#2140)
+
+**Full Changelog**: [`v2.13.1...v2.14.0`](https://github.com/remix-run/remix/compare/remix@2.13.1...remix@2.14.0)
+
+## v2.13.1
+
+Date: 2024-10-11
+
+### Patch Changes
+
+- `@remix-run/dev` - Revert `future.v3_optimizeDeps` back to `future.unstable_optimizeDeps` as it was not intended to stabilize in Remix v2 ([#10099](https://github.com/remix-run/remix/pull/10099))
+
+**Full Changelog**: [`v2.13.0...v2.13.1`](https://github.com/remix-run/remix/compare/remix@2.13.0...remix@2.13.1)
+
+## v2.13.0
+
+Date: 2024-10-11
+
+### What's Changed
+
+#### Stabilized APIs
+
+This release stabilizes a handful of "unstable" APIs in preparation for the [pending](https://x.com/remix_run/status/1841926034868077009) React Router v7 release (see [these](https://remix.run/blog/merging-remix-and-react-router) [posts](https://remix.run/blog/incremental-path-to-react-19) for more info):
+
+- `unstable_data` → `data` (for use with Single Fetch)
+- `unstable_flushSync` → `flushSync` (`useSubmit`, `fetcher.load`, `fetcher.submit`)
+- `unstable_viewTransition` → `viewTransition` (`<Link>`, `<Form>`, `useNavigate`, `useSubmit`)
+- ~~`future.unstable_optimizeDeps` → `future.v3_optimizeDeps` ([Docs](https://remix.run/docs/en/main/guides/dependency-optimization))~~
+  - ⚠️ This flag was not intended to stabilize in Remix v2 and was reverted back to `future.unstable_optimizeDeps` in `2.13.1`
+- `future.unstable_lazyRouteDiscovery` → `future.v3_lazyRouteDiscovery` ([Docs](https://remix.run/docs/guides/lazy-route-discovery))
+- `future.unstable_singleFetch` → `future.v3_singleFetch` ([Docs](https://remix.run/docs/guides/single-fetch))
+
+### Minor Changes
+
+- Stabilize React Router APIs in Remix ([#9980](https://github.com/remix-run/remix/pull/9980))
+  - Adopt stabilized React Router APIs internally
+    - Single Fetch: `unstable_dataStrategy` -> `dataStrategy`
+    - Lazy Route Discovery: `unstable_patchRoutesOnNavigation` -> `patchRoutesOnNavigation`
+  - Stabilize public-facing APIs
+    - Single Fetch: `unstable_data()` -> `data()`
+    - `unstable_viewTransition` -> `viewTransition` (`Link`, `Form`, `navigate`, `submit`)
+    - `unstable_flushSync>` -> `<Link viewTransition>` (`Link`, `Form`, `navigate`, `submit`, `useFetcher`)
+- Stabilize future flags ([#10072](https://github.com/remix-run/remix/pull/10072), [#10092](https://github.com/remix-run/remix/pull/10092))
+  - `future.unstable_lazyRouteDiscovery` -> `future.v3_lazyRouteDiscovery`
+  - `future.unstable_optimizeDeps` -> `future.v3_optimizeDeps`
+  - `future.unstable_singleFetch` -> `future.v3_singleFetch`
+
+### Patch Changes
+
+- `@remix-run/dev` - Stop passing `request.signal` as the `renderToReadableStream` `signal` to abort server rendering for cloudflare/deno runtimes because by the time that `request` is aborted, aborting the rendering is useless because there's no way for React to flush down the unresolved boundaries ([#10047](https://github.com/remix-run/remix/pull/10047))
+  - This has been incorrect for some time, but only recently exposed due to a bug in how we were aborting requests when running via `remix vite:dev` because we were incorrectly aborting requests after successful renders - which was causing us to abort a completed React render, and try to close an already closed `ReadableStream`
+  - This has likely not shown up in any production scenarios because cloudflare/deno production runtimes are (correctly) not aborting the `request.signal` on successful renders
+  - The built-in `entry.server` files no longer pass a `signal` to `renderToReadableStream` because adding a timeout-based abort signal to the default behavior would constitute a breaking change
+  - Users can configure this abort behavior via their own `entry.server` via `remix reveal entry.server`, and the template entry.server files have been updated with an example approach for newly created Remix apps
+- `@remix-run/express` - Fix adapter logic for aborting `request.signal` so we don't incorrectly abort on the `close` event for successful requests ([#10046](https://github.com/remix-run/remix/pull/10046))
+- `@remix-run/react` - Fix bug with `clientLoader.hydrate` in a layout route when hydrating with bubbled errors ([#10063](https://github.com/remix-run/remix/pull/10063))
+
+### Updated Dependencies
+
+- [`react-router-dom@6.27.0`](https://github.com/remix-run/react-router/releases/tag/react-router%406.27.0)
+- [`@remix-run/router@1.20.0`](https://github.com/remix-run/react-router/blob/main/packages/router/CHANGELOG.md#1200)
+
+### Changes by Package
+
+- [`create-remix`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/create-remix/CHANGELOG.md#2130)
+- [`@remix-run/architect`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-architect/CHANGELOG.md#2130)
+- [`@remix-run/cloudflare`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-cloudflare/CHANGELOG.md#2130)
+- [`@remix-run/cloudflare-pages`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-cloudflare-pages/CHANGELOG.md#2130)
+- [`@remix-run/cloudflare-workers`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-cloudflare-workers/CHANGELOG.md#2130)
+- [`@remix-run/css-bundle`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-css-bundle/CHANGELOG.md#2130)
+- [`@remix-run/deno`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-deno/CHANGELOG.md#2130)
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-dev/CHANGELOG.md#2130)
+- [`@remix-run/eslint-config`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-eslint-config/CHANGELOG.md#2130)
+- [`@remix-run/express`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-express/CHANGELOG.md#2130)
+- [`@remix-run/node`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-node/CHANGELOG.md#2130)
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-react/CHANGELOG.md#2130)
+- [`@remix-run/serve`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-serve/CHANGELOG.md#2130)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-server-runtime/CHANGELOG.md#2130)
+- [`@remix-run/testing`](https://github.com/remix-run/remix/blob/remix%402.13.0/packages/remix-testing/CHANGELOG.md#2130)
+
+**Full Changelog**: [`v2.12.1...v2.13.0`](https://github.com/remix-run/remix/compare/remix@2.12.1...remix@2.13.0)
+
+## v2.12.1
+
+Date: 2024-09-19
+
+### Patch Changes
+
+- `@remix-run/dev` - Properly abort `request.signal` during `vite dev` when the node response is closed ([#9976](https://github.com/remix-run/remix/pull/9976))
+- `@remix-run/dev` - CSS imports with `?inline`, `?inline-css` and `?raw` are no longer incorrectly injected during SSR in development ([#9910](https://github.com/remix-run/remix/pull/9910))
+- `@remix-run/server-runtime`: Single Fetch: Fix types when `loader`, `action`, `clientLoader`, or `clientAction` return a mixture of bare objects, `json(...)`, `defer(...)`, and `unstable_data(...)`. ([#9999](https://github.com/remix-run/remix/pull/9999))
+- `@remix-run/node`/`@remix-run/cloudflare`/`@remix-run/deno` - Single Fetch: Re-export `interface Future` through runtime packages so that `pnpm` doesn't complain about `@remix-run/server-runtime` not being a dependency ([#9982](https://github.com/remix-run/remix/pull/9982))
+  - If you've already opted into Single Fetch, you can change your [Single Fetch type augmentation](https://remix.run/docs/guides/single-fetch#enable-single-fetch-types) in `vite.config.ts` to augment `@remix-run/node` (or `cloudflare`/`deno`) instead of `@remix-run/server-runtime`
+
+### Changes by Package
+
+- [`@remix-run/cloudflare`](https://github.com/remix-run/remix/blob/remix%402.12.0/packages/remix-cloudflare/CHANGELOG.md#2121)
+- [`@remix-run/deno`](https://github.com/remix-run/remix/blob/remix%402.12.0/packages/remix-deno/CHANGELOG.md#2121)
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.12.0/packages/remix-dev/CHANGELOG.md#2121)
+- [`@remix-run/node`](https://github.com/remix-run/remix/blob/remix%402.12.0/packages/remix-node/CHANGELOG.md#2121)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.12.0/packages/remix-server-runtime/CHANGELOG.md#2121)
+
+**Full Changelog**: [`v2.12.0...v2.12.1`](https://github.com/remix-run/remix/compare/remix@2.12.0...remix@2.12.1)
+
+## v2.12.0
+
+Date: 2024-09-09
+
+### What's Changed
+
+#### Future Flag for Automatic Dependency Optimization (unstable)
+
+You can now opt-in to automatic dependency optimization during development by using the `future.unstable_optimizeDeps` future flag. For details, check out the docs at [Guides > Dependency optimization](https://remix.run/docs/en/main/guides/dependency-optimization). For users who were previously working around this limitation, you no longer need to explicitly add routes to Vite's `optimizeDeps.entries` nor do you need to disable the `remix-dot-server` plugin.
+
+#### Improved Single Fetch Type Safety (unstable)
+
+- If you were already using single-fetch types:
+  - Remove the `"@remix-run/react/future/single-fetch.d.ts"` override from `tsconfig.json` > `compilerOptions` > `types`
+  - Remove `defineLoader`, `defineAction`, `defineClientLoader`, `defineClientAction` helpers from your route modules
+  - Replace `UIMatch_SingleFetch` type helper with the original `UIMatch`
+  - Replace `MetaArgs_SingleFetch` type helper with the original `MetaArgs`
+
+Then you are ready for the new type safety setup:
+
+```ts
+// vite.config.ts
+
+declare module "@remix-run/server-runtime" {
+  interface Future {
+    unstable_singleFetch: true; // 👈 enable _types_ for single-fetch
+  }
+}
+
+export default defineConfig({
+  plugins: [
+    remix({
+      future: {
+        unstable_singleFetch: true, // 👈 enable single-fetch
+      },
+    }),
+  ],
+});
+```
+
+For more information, see [Guides > Single Fetch](https://remix.run/docs/guides/single-fetch) in our docs.
+
+#### Updates to Single Fetch Revalidation Behavior (unstable)
+
+With Single Fetch, re-used routes will now revalidate by default on `GET` navigations. This is aimed at improving caching of Single Fetch calls in the simple case while still allowing users to opt-into the previous behavior for more advanced use cases.
+
+With this new behavior, requests do not need special query params for granular route revalidations out of the box - i.e., `GET /a/b/c.data`
+
+There are two conditions that will trigger granular revalidation and will exclude certain routes from the single fetch call:
+
+- If a route opts out of revalidation via `shouldRevalidate`
+- If a route defines a `clientLoader`
+  - If you call `serverLoader()` from your `clientLoader`, that will make a separate HTTP call for just that route loader - i.e., `GET /a/b/c.data?_routes=routes/a` for a `clientLoader` in `routes/a.tsx`
+
+When one or more routes are excluded from the Single Fetch call, the remaining routes that have loaders are included as query params. For example, when navigating to `/a/b/c`, if A was excluded, and the `root` route and `routes/b` had a `loader` but `routes/c` did not, the Single Fetch request would be `GET /a/b/c.data?_routes=root,routes/b`.
+
+For more information, see [Guides > Single Fetch](https://remix.run/docs/guides/single-fetch) in our docs.
+
+### Minor Changes
+
+- `@remix-run/dev` - New `future.unstable_optimizeDeps` flag for automatic dependency optimization ([#9921](https://github.com/remix-run/remix/pull/9921))
+
+### Patch Changes
+
+- `@remix-run/dev` - Handle circular dependencies in modulepreload manifest generation ([#9917](https://github.com/remix-run/remix/pull/9917))
+- `@remix-run/dev` - Fix `dest already exists` build errors by only moving SSR assets to the client build directory when they're not already present on disk ([#9901](https://github.com/remix-run/remix/pull/9901))
+- `@remix-run/react` - Clarify wording in default `HydrateFallback` console warning ([#9899](https://github.com/remix-run/remix/pull/9899))
+- `@remix-run/react` - Remove hydration URL check that was originally added for React 17 hydration issues and we no longer support React 17 ([#9890](https://github.com/remix-run/remix/pull/9890))
+  - Reverts the logic originally added in Remix `v1.18.0` via [#6409](https://github.com/remix-run/remix/pull/6409)
+  - This was added to resolve an issue that could arise when doing quick back/forward history navigations while JS was loading which would cause a mismatch between the server matches and client matches: [#1757](https://github.com/remix-run/remix/issues/1757)
+  - This specific hydration issue would then cause this React v17 only looping issue: [#1678](https://github.com/remix-run/remix/issues/1678)
+  - The URL comparison that we added in `1.18.0` turned out to be subject to false positives of it's own which could also put the user in looping scenarios
+  - Remix v2 upgraded it's minimal React version to v18 which eliminated the v17 hydration error loop
+  - React v18 handles this hydration error like any other error and does not result in a loop
+  - So we can remove our check and thus avoid the false-positive scenarios in which it may also trigger a loop
+- `@remix-run/react` - Lazy Route Discovery: Sort `/__manifest` query parameters for better caching ([#9888](https://github.com/remix-run/remix/pull/9888))
+- `@remix-run/react` - Single Fetch: Improved type safety ([#9893](https://github.com/remix-run/remix/pull/9893))
+- `@remix-run/react` - Single Fetch: Fix revalidation behavior bugs ([#9938](https://github.com/remix-run/remix/pull/9938))
+- `@remix-run/server-runtime` - Do not render or try to include a body for 304 responses on document requests ([#9955](https://github.com/remix-run/remix/pull/9955))
+- `@remix-run/server-runtime` - Single Fetch: Do not try to encode a `turbo-stream` body into 304 responses ([#9941](https://github.com/remix-run/remix/pull/9941))
+- `@remix-run/server-runtime` - Single Fetch: Change content type on `.data` requests to `text/x-script` to allow Cloudflare compression ([#9889](https://github.com/remix-run/remix/pull/9889))
+
+### Updated Dependencies
+
+- [`react-router-dom@6.26.2`](https://github.com/remix-run/react-router/releases/tag/react-router%406.26.2)
+- [`@remix-run/router@1.19.2`](https://github.com/remix-run/react-router/blob/main/packages/router/CHANGELOG.md#1192)
+
+### Changes by Package
+
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.12.0/packages/remix-dev/CHANGELOG.md#2120)
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.12.0/packages/remix-react/CHANGELOG.md#2120)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.12.0/packages/remix-server-runtime/CHANGELOG.md#2120)
+
+**Full Changelog**: [`v2.11.2...v2.12.0`](https://github.com/remix-run/remix/compare/remix@2.11.2...remix@2.12.0)
+
+## v2.11.2
+
+Date: 2024-08-15
+
+### Patch Changes
+
+- `@remix-run/react` - Fog of War: Simplify implementation now that React Router handles slug/splat edge cases and tracks previously discovered routes (see https://github.com/remix-run/react-router/pull/11883) ([#9860](https://github.com/remix-run/remix/pull/9860))
+  - ⚠️ This changes the return signature of the internal `/__manifest` endpoint since we no longer need the `notFoundPaths` field
+- `@remix-run/react` - Fog of War: Update to use renamed `unstable_patchRoutesOnNavigation` function in RR (see https://github.com/remix-run/react-router/pull/11888) ([#9860](https://github.com/remix-run/remix/pull/9860))
+- `@remix-run/server-runtime` - Single Fetch: Fix redirects when a `basename` is present ([#9848](https://github.com/remix-run/remix/pull/9848))
+- `@remix-run/server-runtime` - Single Fetch: Update `turbo-stream` to `v2.3.0` ([#9856](https://github.com/remix-run/remix/pull/9856))
+  - Stabilize object key order for serialized payloads
+  - Remove memory limitations payloads sizes
+
+### Updated Dependencies
+
+- [`react-router-dom@6.26.1`](https://github.com/remix-run/react-router/releases/tag/react-router%406.26.1)
+- [`@remix-run/router@1.19.1`](https://github.com/remix-run/react-router/blob/main/packages/router/CHANGELOG.md#1191)
+
+### Changes by Package
+
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.11.2/packages/remix-react/CHANGELOG.md#2112)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.11.2/packages/remix-server-runtime/CHANGELOG.md#2112)
+
+**Full Changelog**: [`v2.11.1...v2.11.2`](https://github.com/remix-run/remix/compare/remix@2.11.1...remix@2.11.2)
+
+## v2.11.1
+
+Date: 2024-08-05
+
+### Patch Changes
+
+- `@remix-run/react` - Revert #9695, stop infinite reload ([`a7cffe57`](https://github.com/remix-run/remix/commit/a7cffe5733c8b7d0f29bd2d8606876c537d87101))
+
+### Changes by Package
+
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.11.1/packages/remix-react/CHANGELOG.md#2111)
+
+**Full Changelog**: [`v2.11.0...v2.11.1`](https://github.com/remix-run/remix/compare/remix@2.11.0...remix@2.11.1)
+
+## v2.11.0
+
+Date: 2024-08-01
+
+### What's Changed
+
+#### Renamed `unstable_fogOfWar` future flag to `unstable_lazyRouteDiscovery` (unstable)
+
+We found that the `future.unstable_fogOfWar` flag name could be a bit confusing without the proper context (notably, the [blog post](https://remix.run/blog/fog-of-war)), so we've renamed the flag to `future.unstable_lazyRouteDiscovery` for clarity. If you had opted into this feature already, please update the name of the flag in your `vite.config.ts` file (or `remix.config.js`).
+
+#### Removed `response` stub in Single Fetch (unstable)
+
+The original Single Fetch approach was based on an assumption that an eventual `middleware` implementation would require something like the `ResponseStub` API so users could mutate `status`/`headers` in `middleware` before/after handlers as well as during handlers. As part of Single Fetch, we wanted to align how response headers would be merged between document and data requests. Thinking `response` was the future API, we aligned document requests to use the `response` stub that data requests were using, and we stopped using the `headers()` function.
+
+However, the realization/alignment between Michael and Ryan on the recent [roadmap planning](https://www.youtube.com/watch?v=f5z_axCofW0) made us realize that the original assumption was incorrect. `middleware` won't need a `response` stub - as users can just mutate the `Response` they get from `await next()` directly.
+
+Removing that assumption, and still wanting to align how headers get merged between document and data requests, it makes more sense to stick with the current `headers()` API and align Single Fetch data requests to use that existing API. This was we don't need to introduce any new header-related APIs which will make the adoption of Single Fetch much easier.
+
+With this change:
+
+- The `headers()` function will let you control header merging for both document and data requests
+- In most cases, if you were returning `json()`/`defer()` _without_ setting a custom `status` or `headers`, you can just remove those utility functions and return the raw data
+  - ❌ `return json({ data: "whatever" });`
+  - ✅ `return { data: "whatever" };`
+- If you _were_ returning a custom `status` or `headers` via `json`/`defer`:
+  - We've added a new API-compatible [`unstable_data`](https://remix.run/docs/utils/data) utility that will let you send back `status`/`headers` alongside your raw data without having to encode it into a `Response`
+- We will be removing both `json` and `defer` in the next major version, but both _should_ still work in Single Fetch in v2 to allow for incremental adoption of the new behavior
+
+⚠️ If you've already adopted Single Fetch in it's unstable state and converted to `response` stub, you'll need to move those changes back to leveraging the `headers()` API.
+
+### Minor Changes
+
+- `@remix-run/dev` - Fog of War: Rename `future.unstable_fogOfWar` to `future.unstable_lazyRouteDiscovery` for clarity ([#9763](https://github.com/remix-run/remix/pull/9763))
+- `@remix-run/server-runtime` - Add a new `replace(url, init?)` alternative to `redirect(url, init?)` that performs a `history.replaceState` instead of a `history.pushState` on client-side navigation redirects ([#9764](https://github.com/remix-run/remix/pull/9764))
+- `@remix-run/server-runtime` - Single Fetch: Add a new `unstable_data()` API as a replacement for `json`/`defer` when custom `status`/`headers` are needed ([#9769](https://github.com/remix-run/remix/pull/9769))
+- `@remix-run/server-runtime` - Single Fetch: Remove `responseStub` in favor of `headers` ([#9769](https://github.com/remix-run/remix/pull/9769))
+
+### Patch Changes
+
+- `@remix-run/dev` - Handle absolute Vite base URLs ([#9700](https://github.com/remix-run/remix/pull/9700))
+- `@remix-run/react` - Change initial hydration route mismatch from a URL check to a matches check to be resistant to URL inconsistencies ([#9695](https://github.com/remix-run/remix/pull/9695))
+- `@remix-run/react` - Single Fetch: Ensure calls don't include any trailing slash from the pathname (i.e., `/path/.data`) ([#9792](https://github.com/remix-run/remix/pull/9792))
+- `@remix-run/react` - Single Fetch: Add `undefined` to the `useRouteLoaderData` type override ([#9796](https://github.com/remix-run/remix/pull/9796))
+
+### Updated Dependencies
+
+- [`react-router-dom@6.26.0`](https://github.com/remix-run/react-router/releases/tag/react-router%406.26.0)
+- [`@remix-run/router@1.19.0`](https://github.com/remix-run/react-router/blob/main/packages/router/CHANGELOG.md#1190)
+
+### Changes by Package
+
+- [`create-remix`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/create-remix/CHANGELOG.md#2110)
+- [`@remix-run/architect`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-architect/CHANGELOG.md#2110)
+- [`@remix-run/cloudflare`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-cloudflare/CHANGELOG.md#2110)
+- [`@remix-run/cloudflare-pages`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-cloudflare-pages/CHANGELOG.md#2110)
+- [`@remix-run/cloudflare-workers`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-cloudflare-workers/CHANGELOG.md#2110)
+- [`@remix-run/css-bundle`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-css-bundle/CHANGELOG.md#2110)
+- [`@remix-run/deno`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-deno/CHANGELOG.md#2110)
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-dev/CHANGELOG.md#2110)
+- [`@remix-run/eslint-config`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-eslint-config/CHANGELOG.md#2110)
+- [`@remix-run/express`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-express/CHANGELOG.md#2110)
+- [`@remix-run/node`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-node/CHANGELOG.md#2110)
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-react/CHANGELOG.md#2110)
+- [`@remix-run/serve`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-serve/CHANGELOG.md#2110)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-server-runtime/CHANGELOG.md#2110)
+- [`@remix-run/testing`](https://github.com/remix-run/remix/blob/remix%402.11.0/packages/remix-testing/CHANGELOG.md#2110)
+
+**Full Changelog**: [`v2.10.3...v2.11.0`](https://github.com/remix-run/remix/compare/remix@2.10.3...remix@2.11.0)
+
+## v2.10.3
+
+Date: 2024-07-16
+
+### Patch Changes
+
+- `@remix-run/architect` - Manually joining headers with semi-colons to avoid differences in Remix and node/undici Headers implementation ([#9664](https://github.com/remix-run/remix/pull/9664))
+- `@remix-run/react` - Log any errors encountered loading a route module prior to reloading the page ([#8932](https://github.com/remix-run/remix/pull/8932))
+- `@remix-run/react` - Single Fetch (unstable): Proxy `request.signal` through `dataStrategy` for `loader` calls to fix cancellation ([#9738](https://github.com/remix-run/remix/pull/9738))
+- `@remix-run/react` - Single Fetch (unstable): Adopt React Router's stabilized `future.v7_skipActionErrorRevalidation` under the hood ([#9706](https://github.com/remix-run/remix/pull/9706))
+  - This stabilizes the `shouldRevalidate` parameter from `unstable_actionStatus` to `actionStatus`
+  - ⚠️ This might be a breaking change for your app if you have opted into single fetch and the `unstable_actionStatus` parameter
+
+### Updated Dependencies
+
+- [`react-router-dom@6.25.0`](https://github.com/remix-run/react-router/releases/tag/react-router%406.25.0)
+- [`@remix-run/router@1.18.0`](https://github.com/remix-run/react-router/blob/main/packages/router/CHANGELOG.md#1180)
+
+### Changes by Package
+
+- [`create-remix`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/create-remix/CHANGELOG.md#2103)
+- [`@remix-run/architect`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-architect/CHANGELOG.md#2103)
+- [`@remix-run/cloudflare`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-cloudflare/CHANGELOG.md#2103)
+- [`@remix-run/cloudflare-pages`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-cloudflare-pages/CHANGELOG.md#2103)
+- [`@remix-run/cloudflare-workers`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-cloudflare-workers/CHANGELOG.md#2103)
+- [`@remix-run/css-bundle`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-css-bundle/CHANGELOG.md#2103)
+- [`@remix-run/deno`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-deno/CHANGELOG.md#2103)
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-dev/CHANGELOG.md#2103)
+- [`@remix-run/eslint-config`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-eslint-config/CHANGELOG.md#2103)
+- [`@remix-run/express`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-express/CHANGELOG.md#2103)
+- [`@remix-run/node`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-node/CHANGELOG.md#2103)
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-react/CHANGELOG.md#2103)
+- [`@remix-run/serve`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-serve/CHANGELOG.md#2103)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-server-runtime/CHANGELOG.md#2103)
+- [`@remix-run/testing`](https://github.com/remix-run/remix/blob/remix%402.10.3/packages/remix-testing/CHANGELOG.md#2103)
+
+**Full Changelog**: [`v2.10.2...v2.10.3`](https://github.com/remix-run/remix/compare/remix@2.10.2...remix@2.10.3)
+
+## v2.10.2
+
+Date: 2024-07-04
+
+### Patch Changes
+
+- `@remix-run/react` - Forward `ref` to `Form` ([`bdd04217`](https://github.com/remix-run/remix/commit/bdd04217713292307078a30dab9033926d48ede6))
+- `@remix-run/server-runtime` - Fix bug with `immutable` headers on raw native `fetch` responses returned from loaders ([#9693](https://github.com/remix-run/remix/pull/9693))
+
+### Changes by Package
+
+- [`create-remix`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/create-remix/CHANGELOG.md#2102)
+- [`@remix-run/architect`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-architect/CHANGELOG.md#2102)
+- [`@remix-run/cloudflare`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-cloudflare/CHANGELOG.md#2102)
+- [`@remix-run/cloudflare-pages`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-cloudflare-pages/CHANGELOG.md#2102)
+- [`@remix-run/cloudflare-workers`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-cloudflare-workers/CHANGELOG.md#2102)
+- [`@remix-run/css-bundle`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-css-bundle/CHANGELOG.md#2102)
+- [`@remix-run/deno`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-deno/CHANGELOG.md#2102)
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-dev/CHANGELOG.md#2102)
+- [`@remix-run/eslint-config`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-eslint-config/CHANGELOG.md#2102)
+- [`@remix-run/express`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-express/CHANGELOG.md#2102)
+- [`@remix-run/node`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-node/CHANGELOG.md#2102)
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-react/CHANGELOG.md#2102)
+- [`@remix-run/serve`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-serve/CHANGELOG.md#2102)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-server-runtime/CHANGELOG.md#2102)
+- [`@remix-run/testing`](https://github.com/remix-run/remix/blob/remix%402.10.2/packages/remix-testing/CHANGELOG.md#2102)
+
+**Full Changelog**: [`v2.10.1...v2.10.2`](https://github.com/remix-run/remix/compare/remix@2.10.1...remix@2.10.2)
+
+## v2.10.1
+
+Date: 2024-07-03
+
+### Patch Changes
+
+- `@remix-run/react` - Fog of War (unstable): Support route discovery from `<Form>` components ([#9665](https://github.com/remix-run/remix/pull/9665))
+- `@remix-run/react` - Fog of War (unstable): Don't discover links/forms with `reloadDocument` ([#9686](https://github.com/remix-run/remix/pull/9686))
+
+### Updated Dependencies
+
+- [`react-router-dom@6.24.1`](https://github.com/remix-run/react-router/releases/tag/react-router%406.24.1)
+- [`@remix-run/router@1.17.1`](https://github.com/remix-run/react-router/blob/main/packages/router/CHANGELOG.md#1171)
+
+### Changes by Package
+
+- [`create-remix`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/create-remix/CHANGELOG.md#2101)
+- [`@remix-run/architect`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-architect/CHANGELOG.md#2101)
+- [`@remix-run/cloudflare`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-cloudflare/CHANGELOG.md#2101)
+- [`@remix-run/cloudflare-pages`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-cloudflare-pages/CHANGELOG.md#2101)
+- [`@remix-run/cloudflare-workers`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-cloudflare-workers/CHANGELOG.md#2101)
+- [`@remix-run/css-bundle`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-css-bundle/CHANGELOG.md#2101)
+- [`@remix-run/deno`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-deno/CHANGELOG.md#2101)
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-dev/CHANGELOG.md#2101)
+- [`@remix-run/eslint-config`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-eslint-config/CHANGELOG.md#2101)
+- [`@remix-run/express`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-express/CHANGELOG.md#2101)
+- [`@remix-run/node`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-node/CHANGELOG.md#2101)
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-react/CHANGELOG.md#2101)
+- [`@remix-run/serve`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-serve/CHANGELOG.md#2101)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-server-runtime/CHANGELOG.md#2101)
+- [`@remix-run/testing`](https://github.com/remix-run/remix/blob/remix%402.10.1/packages/remix-testing/CHANGELOG.md#2101)
+
+**Full Changelog**: [`v2.10.0...v2.10.1`](https://github.com/remix-run/remix/compare/remix@2.10.0...remix@2.10.1)
+
+## v2.10.0
+
+Date: 2024-06-25
+
+### What's Changed
+
+#### Lazy Route Discovery (a.k.a. "Fog of War")
+
+The "Fog of War" feature in Remix, now available through the `future.unstable_fogOfWar` flag, is an optimization to reduce the up front size of the Remix route manifest. In most scenarios the Remix route manifest isn't prohibitively large so as to impact initial perf metrics, but at scale we've found that some apps can generate large manifests that are expensive to download and execute on app startup.
+
+When Fog of War is enabled, Remix will only include the initially server-rendered routes in the manifest and then it will fetch manifest "patches" for outgoing links as the user navigates around. By default, to avoid waterfalls Remix fetches patches for all rendered links, so that in the ideal case they've already been patched in prior to being clicked. If a user clicks a link before this eager discovery completes, then a small waterfall will occur to first "discover" the route, and then navigate to the route.
+
+Enabling this flag should require no application code changes. For more information, please see the [documentation](https://remix.run/docs/guides/fog-of-war).
+
+### Minor Changes
+
+- Add support for Lazy Route Discovery (a.k.a. Fog of War) ([#9600](https://github.com/remix-run/remix/pull/9600), [#9619](https://github.com/remix-run/remix/pull/9619))
+
+### Patch Changes
+
+- `@remix-run/{dev|express|serve}` - Upgrade `express` dependency to `^4.19.2` ([#9184](https://github.com/remix-run/remix/pull/9184))
+- `@remix-run/react` - Don't prefetch server `loader` data when `clientLoader` exists ([#9580](https://github.com/remix-run/remix/pull/9580))
+- `@remix-run/react` - Avoid hydration loops when `Layout`/`ErrorBoundary` renders also throw ([#9566](https://github.com/remix-run/remix/pull/9566))
+- `@remix-run/react` - Fix a hydration bug when using child routes and `HydrateFallback` components with a `basename` ([#9584](https://github.com/remix-run/remix/pull/9584))
+- `@remix-run/{server-runtime|react}` - Single Fetch: Update to `turbo-stream@2.2.0` ([#9562](https://github.com/remix-run/remix/pull/9562))
+- `@remix-run/server-runtime` - Single Fetch: Properly handle thrown 4xx/5xx response stubs ([#9501](https://github.com/remix-run/remix/pull/9501))
+- `@remix-run/server-runtime` - Single Fetch: Change redirects to use a 202 status to avoid automatic caching ([#9564](https://github.com/remix-run/remix/pull/9564))
+- `@remix-run/server-runtime` - Single Fetch: Fix issues with returning or throwing a response stub from a resource route in single fetch ([#9488](https://github.com/remix-run/remix/pull/9488))
+- `@remix-run/server-runtime` - Single Fetch: Fix error when returning `null` from a resource route ([#9488](https://github.com/remix-run/remix/pull/9488))
+
+### Updated Dependencies
+
+- [`react-router-dom@6.24.0`](https://github.com/remix-run/react-router/releases/tag/react-router%406.24.0)
+- [`@remix-run/router@1.17.0`](https://github.com/remix-run/react-router/blob/main/packages/router/CHANGELOG.md#117)
+
+### Changes by Package
+
+- [`create-remix`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/create-remix/CHANGELOG.md#2100)
+- [`@remix-run/architect`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-architect/CHANGELOG.md#2100)
+- [`@remix-run/cloudflare`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-cloudflare/CHANGELOG.md#2100)
+- [`@remix-run/cloudflare-pages`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-cloudflare-pages/CHANGELOG.md#2100)
+- [`@remix-run/cloudflare-workers`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-cloudflare-workers/CHANGELOG.md#2100)
+- [`@remix-run/css-bundle`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-css-bundle/CHANGELOG.md#2100)
+- [`@remix-run/deno`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-deno/CHANGELOG.md#2100)
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-dev/CHANGELOG.md#2100)
+- [`@remix-run/eslint-config`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-eslint-config/CHANGELOG.md#2100)
+- [`@remix-run/express`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-express/CHANGELOG.md#2100)
+- [`@remix-run/node`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-node/CHANGELOG.md#2100)
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-react/CHANGELOG.md#2100)
+- [`@remix-run/serve`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-serve/CHANGELOG.md#2100)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-server-runtime/CHANGELOG.md#2100)
+- [`@remix-run/testing`](https://github.com/remix-run/remix/blob/remix%402.10.0/packages/remix-testing/CHANGELOG.md#2100)
+
+**Full Changelog**: [`v2.9.2...v2.10.0`](https://github.com/remix-run/remix/compare/remix@2.9.2...remix@2.10.0)
+
+## v2.9.2
+
+Date: 2024-05-10
+
+### What's Changed
+
+#### Updated Type-Safety for Single Fetch
+
+In 2.9.2 we've enhanced the type-safety when opting into the `future.unstable_singleFetch` feature. Previously, we added the `response` stub to `LoaderFunctionArgs` and used type overrides for inference on `useLoaderData`, etc., but we found that it wasn't quite enough.
+
+With this release we're introducing new functions to assist the type-inference when using single fetch - `defineLoader`/`defineAction` and their client-side counterparts `defineClientLoader` and nd `defineClientAction`. These are identity functions; they don't modify your loader or action at runtime. Rather, they exist solely for type-safety by providing types for args and by ensuring valid return types.
+
+```ts
+export const loader = defineLoader(({ request }) => {
+  //                                ^? Request
+  return { a: 1, b: () => 2 };
+  //           ^ type error: `b` is not serializable
+});
+```
+
+Note that `defineLoader` and `defineAction` are not technically necessary for defining loaders and actions if you aren't concerned with type-safety:
+
+```ts
+// this totally works! and typechecking is happy too!
+export const loader = () => {
+  return { a: 1 };
+};
+```
+
+This means that you can opt-in to `defineLoader` incrementally, one loader at a time.
+
+Please see the [Single Fetch docs](https://remix.run/docs/en/main/guides/single-fetch) for more information.
+
+### Patch Changes
+
+- `@remix-run/dev` - Vite: Fix `dest already exists` error when running `remix vite:build` ([#9305](https://github.com/remix-run/remix/pull/9305))
+- `@remix-run/dev` - Vite: Fix issue resolving critical CSS during development when route files are located outside of the app directory ([#9194](https://github.com/remix-run/remix/pull/9194))
+- `@remix-run/dev` - Vite: Remove `@remix-run/node` from Vite plugin's `optimizeDeps.include` list since it was unnecessary and resulted in Vite warnings when not depending on this package ([#9287](https://github.com/remix-run/remix/pull/9287))
+- `@remix-run/dev` - Vite: Clean up redundant `?client-route=1` imports in development ([#9395](https://github.com/remix-run/remix/pull/9395))
+- `@remix-run/dev` - Vite: Ensure Babel config files are not referenced when applying the `react-refresh` Babel transform within the Remix Vite plugin ([#9241](https://github.com/remix-run/remix/pull/9241))
+- `@remix-run/react` - Type-safety for single-fetch: `defineLoader`, `defineClientLoader`, `defineAction`, `defineClientAction` ([#9372](https://github.com/remix-run/remix/pull/9372))
+- `@remix-run/react` - Single Fetch: Add `undefined` to `useActionData` type override ([#9322](https://github.com/remix-run/remix/pull/9322))
+- `@remix-run/react` - Single Fetch: Allow a `nonce` to be set on single fetch stream transfer inline scripts via `<RemixServer>` ([#9364](https://github.com/remix-run/remix/pull/9364))
+- `@remix-run/server-runtime` - Single Fetch: Don't log thrown response stubs via `handleError` ([#9369](https://github.com/remix-run/remix/pull/9369))
+- `@remix-run/server-runtime` - Single Fetch: Automatically wrap resource route naked object returns in `json()` for back-compat in v2 (and log deprecation warning) ([#9349](https://github.com/remix-run/remix/pull/9349))
+- `@remix-run/server-runtime` - Single Fetch: Pass `response` stub to resource route handlers ([#9349](https://github.com/remix-run/remix/pull/9349))
+
+### Updated Dependencies
+
+- [`react-router-dom@6.23.1`](https://github.com/remix-run/react-router/releases/tag/react-router%406.23.1)
+- [`@remix-run/router@1.16.1`](https://github.com/remix-run/react-router/blob/main/packages/router/CHANGELOG.md#1161)
+
+### Changes by Package
+
+- [`@remix-run/cloudflare`](https://github.com/remix-run/remix/blob/remix%402.9.2/packages/remix-cloudflare/CHANGELOG.md#292)
+- [`@remix-run/cloudflare-pages`](https://github.com/remix-run/remix/blob/remix%402.9.2/packages/remix-cloudflare-pages/CHANGELOG.md#292)
+- [`@remix-run/cloudflare-workers`](https://github.com/remix-run/remix/blob/remix%402.9.2/packages/remix-cloudflare-workers/CHANGELOG.md#292)
+- [`@remix-run/css-bundle`](https://github.com/remix-run/remix/blob/remix%402.9.2/packages/remix-css-bundle/CHANGELOG.md#292)
+- [`@remix-run/deno`](https://github.com/remix-run/remix/blob/remix%402.9.2/packages/remix-deno/CHANGELOG.md#292)
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.9.2/packages/remix-dev/CHANGELOG.md#292)
+- [`@remix-run/eslint-config`](https://github.com/remix-run/remix/blob/remix%402.9.2/packages/remix-eslint-config/CHANGELOG.md#292)
+- [`@remix-run/express`](https://github.com/remix-run/remix/blob/remix%402.9.2/packages/remix-express/CHANGELOG.md#292)
+- [`@remix-run/node`](https://github.com/remix-run/remix/blob/remix%402.9.2/packages/remix-node/CHANGELOG.md#292)
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.9.2/packages/remix-react/CHANGELOG.md#292)
+- [`@remix-run/serve`](https://github.com/remix-run/remix/blob/remix%402.9.2/packages/remix-serve/CHANGELOG.md#292)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.9.2/packages/remix-server-runtime/CHANGELOG.md#292)
+- [`@remix-run/testing`](https://github.com/remix-run/remix/blob/remix%402.9.2/packages/remix-testing/CHANGELOG.md#292)
+
+**Full Changelog**: [`v2.9.1...v2.9.2`](https://github.com/remix-run/remix/compare/remix@2.9.1...remix@2.9.2)
+
+## v2.9.1
+
+Date: 2024-04-24
+
+### Patch Changes
+
+- `@remix-run/dev` - Fix issue where consumers who had added Remix packages to Vite's `ssr.noExternal` option were being overridden by the Remix Vite plugin adding Remix packages to Vite's `ssr.external` option ([#9301](https://github.com/remix-run/remix/pull/9301))
+- `@remix-run/react` - Ignore `future/*.d.ts` files from TS build ([#9299](https://github.com/remix-run/remix/pull/9299))
+
+### Changes by Package
+
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.9.1/packages/remix-dev/CHANGELOG.md#291)
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.9.1/packages/remix-react/CHANGELOG.md#291)
+
+**Full Changelog**: [`v2.9.0...v2.9.1`](https://github.com/remix-run/remix/compare/remix@2.9.0...remix@2.9.1)
+
+## v2.9.0
+
+Date: 2024-04-23
+
+### What's Changed
+
+#### Single Fetch (unstable)
+
+`2.9.0` introduces a `future.unstable_singleFetch` flag to enable to Single Fetch behavior ([RFC](https://github.com/remix-run/remix/discussions/7640)) in your Remix application. Please refer to the [docs](https://remix.run/docs/en/main/guides/single-fetch) for the full detail but the high-level changes to be aware of include:
+
+- Naked objects returned from `loader`/`action` functions are no longer automatically serialized to JSON responses
+  - Instead, they'll be streamed as-is via [`turbo-stream`](https://github.com/jacob-ebey/turbo-stream) which allows direct serialization of more complex types such as `Promise`, `Date`, `Map` instances, and more
+  - You will need to modify your `tsconfig.json`'s `compilerOptions.types` array to infer types properly when using Single Fetch
+- The `headers` export is no longer used when Single Fetch is enabled in favor of a new `response` stub passed to your `loader`/`action` functions
+- The `json`/`defer`/`redirect` utilities are deprecated when using Single Fetch (but still work _mostly_ the same)
+- Actions no longer automatically revalidate on `4xx`/`5xx` responses - you can return a `2xx` to opt-into revalidation or use `shouldRevalidate`
+
+> [!IMPORTANT]
+> Single Fetch requires using `undici` as your fetch polyfill, or using the built-in fetch on Node 20+, because it relies on APIs available there but not in the `@remix-run/web-fetch` polyfill. Please refer to the [Undici](#undici) section below for more details.
+>
+> - If you are managing your own server and calling `installGlobals()`, you will need to call `installGlobals({ nativeFetch: true })` to avoid runtime errors when using Single Fetch
+> - If you are using `remix-serve`, it will use `undici` automatically if Single Fetch is enabled
+
+#### Undici
+
+Remix `2.9.0` adds a new `installGlobals({ nativeFetch: true })` flag to opt into using [`undici`](https://github.com/nodejs/undici) for the [Web Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) polyfills instead of the [`@remix-run/web-*` packages](https://github.com/remix-run/web-std-io). This change has a few primary benefits:
+
+- It will allow us to stop maintaining our own [web-std-io fork](https://github.com/remix-run/web-std-io) in future versions of Remix
+- It should bring us more in-line with spec compliance
+  - ⚠️ It is possible that some non-spec-compliant bugs in our fork will be "fixed" by moving to `undici`, so beware of "breaking bug fixes" and keep an eye on any advanced `fetch` API interactions you're performing in your app
+  - ⚠️ In some cases, `undici` may have different behavior by design -- most notably, `undici`'s garbage collection behavior differs and you are [required to consume all fetch response bodies](https://github.com/nodejs/undici?tab=readme-ov-file#garbage-collection) to avoid a memory leak in your app
+- Because `undici` is the fetch implementation used by `node` internally, it should better prepare Remix apps to more smoothly drop the polyfill to use the built-in Node.js APIs on `node` 20+
+
+### Minor Changes
+
+- New `future.unstable_singleFetch` flag ([#8773](https://github.com/remix-run/remix/pull/8773), [#9073](https://github.com/remix-run/remix/pull/9073), [#9084](https://github.com/remix-run/remix/pull/9084), [#9272](https://github.com/remix-run/remix/pull/9272))
+- `@remix-run/node` - Add a new `installGlobals({ nativeFetch: true })` flag to opt-into using [`undici`](https://github.com/nodejs/undici) as the fetch polyfill instead of `@remix-run/web-*` ([#9106](https://github.com/remix-run/remix/pull/9106), [#9111](https://github.com/remix-run/remix/pull/9111), [#9198](https://github.com/remix-run/remix/pull/9198))
+- `@remix-run/server-runtime` - Add `ResponseStub` header interface and deprecate the `headers` export when Single Fetch is enabled ([#9142](https://github.com/remix-run/remix/pull/9142))
+
+### Patch Changes
+
+- `create-remix` - Allow `.` in repo name when using `--template` flag ([#9026](https://github.com/remix-run/remix/pull/9026))
+- `@remix-run/dev` - Improve `getDependenciesToBundle` resolution in monorepos ([#8848](https://github.com/remix-run/remix/pull/8848))
+- `@remix-run/dev` - Fix SPA mode when Single Fetch is enabled by using streaming `entry.server` ([#9063](https://github.com/remix-run/remix/pull/9063))
+- `@remix-run/dev` - Vite: added sourcemap support for transformed routes ([#8970](https://github.com/remix-run/remix/pull/8970))
+- `@remix-run/dev` - Update links printed to the console by the Remix CLI/Dev Server to point to updated docs locations ([#9176](https://github.com/remix-run/remix/pull/9176))
+- `@remix-run/server-runtime` - Handle redirects created by `handleDataRequest` ([#9104](https://github.com/remix-run/remix/pull/9104))
+
+### Updated Dependencies
+
+- [`react-router-dom@6.23.0`](https://github.com/remix-run/react-router/releases/tag/react-router%406.23.0)
+- [`@remix-run/router@1.16.0`](https://github.com/remix-run/react-router/blob/main/packages/router/CHANGELOG.md#1160)
+
+### Changes by Package
+
+- [`create-remix`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/create-remix/CHANGELOG.md#290)
+- [`@remix-run/architect`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-architect/CHANGELOG.md#290)
+- [`@remix-run/cloudflare`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-cloudflare/CHANGELOG.md#290)
+- [`@remix-run/cloudflare-pages`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-cloudflare-pages/CHANGELOG.md#290)
+- [`@remix-run/cloudflare-workers`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-cloudflare-workers/CHANGELOG.md#290)
+- [`@remix-run/css-bundle`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-css-bundle/CHANGELOG.md#290)
+- [`@remix-run/deno`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-deno/CHANGELOG.md#290)
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-dev/CHANGELOG.md#290)
+- [`@remix-run/eslint-config`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-eslint-config/CHANGELOG.md#290)
+- [`@remix-run/express`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-express/CHANGELOG.md#290)
+- [`@remix-run/node`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-node/CHANGELOG.md#290)
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-react/CHANGELOG.md#290)
+- [`@remix-run/serve`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-serve/CHANGELOG.md#290)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-server-runtime/CHANGELOG.md#290)
+- [`@remix-run/testing`](https://github.com/remix-run/remix/blob/remix%402.9.0/packages/remix-testing/CHANGELOG.md#290)
+
+**Full Changelog**: [`v2.8.1...v2.9.0`](https://github.com/remix-run/remix/compare/remix@2.8.1...remix@2.9.0)
+
+## v2.8.1
+
+Date: 2024-03-07
+
+### Patch Changes
+
+- `@remix-run/dev` - Vite: Support reading from Vite config when running `remix reveal` and `remix routes` CLI commands ([#8916](https://github.com/remix-run/remix/pull/8916))
+- `@remix-run/dev` - Vite: Clean up redundant client route query strings on route JavaScript files in production builds ([#8969](https://github.com/remix-run/remix/pull/8969))
+- `@remix-run/dev` - Vite: Add vite commands to Remix CLI `--help` output ([#8939](https://github.com/remix-run/remix/pull/8939))
+- `@remix-run/dev` - Vite: Fix support for `build.sourcemap` option in Vite config ([#8965](https://github.com/remix-run/remix/pull/8965))
+- `@remix-run/dev` - Vite: Fix error when using Vite's `server.fs.allow` option without a client entry file ([#8966](https://github.com/remix-run/remix/pull/8966))
+- `@remix-run/react` - Strengthen the internal `LayoutComponent` type to accept limited children ([#8910](https://github.com/remix-run/remix/pull/8910))
+
+### Updated Dependencies
+
+- [`react-router-dom@6.22.3`](https://github.com/remix-run/react-router/releases/tag/react-router%406.22.3)
+- [`@remix-run/router@1.15.3`](https://github.com/remix-run/react-router/blob/main/packages/router/CHANGELOG.md#1153)
+
+### Changes by Package
+
+- [`create-remix`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/create-remix/CHANGELOG.md#281)
+- [`@remix-run/architect`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-architect/CHANGELOG.md#281)
+- [`@remix-run/cloudflare`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-cloudflare/CHANGELOG.md#281)
+- [`@remix-run/cloudflare-pages`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-cloudflare-pages/CHANGELOG.md#281)
+- [`@remix-run/cloudflare-workers`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-cloudflare-workers/CHANGELOG.md#281)
+- [`@remix-run/css-bundle`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-css-bundle/CHANGELOG.md#281)
+- [`@remix-run/deno`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-deno/CHANGELOG.md#281)
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-dev/CHANGELOG.md#281)
+- [`@remix-run/eslint-config`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-eslint-config/CHANGELOG.md#281)
+- [`@remix-run/express`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-express/CHANGELOG.md#281)
+- [`@remix-run/node`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-node/CHANGELOG.md#281)
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-react/CHANGELOG.md#281)
+- [`@remix-run/serve`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-serve/CHANGELOG.md#281)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-server-runtime/CHANGELOG.md#281)
+- [`@remix-run/testing`](https://github.com/remix-run/remix/blob/remix%402.8.1/packages/remix-testing/CHANGELOG.md#281)
+
+**Full Changelog**: [`v2.8.0...v2.8.1`](https://github.com/remix-run/remix/compare/remix@2.8.0...remix@2.8.1)
+
+## v2.8.0
+
+Date: 2024-02-28
+
+### Minor Changes
+
+- `@remix-run/dev` - Vite: Pass resolved `viteConfig` to Remix Vite plugin's `buildEnd` hook ([#8885](https://github.com/remix-run/remix/pull/8885))
+
+### Patch Changes
+
+- `@remix-run/dev` - Mark `Layout` as browser safe route export in `esbuild` compiler ([#8842](https://github.com/remix-run/remix/pull/8842))
+- `@remix-run/dev` - Vite: Silence build warnings when dependencies include `"use client"` directives ([#8897](https://github.com/remix-run/remix/pull/8897))
+- `@remix-run/dev` - Vite: Fix `serverBundles` issue where multiple browser manifests are generated ([#8864](https://github.com/remix-run/remix/pull/8864))
+- `@remix-run/dev` - Vite: Support custom `build.assetsDir` option ([#8843](https://github.com/remix-run/remix/pull/8843))
+- `@remix-run/react` - Fix the default root `ErrorBoundary` component so it leverages the user-provided `Layout` component ([#8859](https://github.com/remix-run/remix/pull/8859))
+- `@remix-run/react` - Fix the default root `HydrateFallback` component so it leverages any user-provided `Layout` component ([#8892](https://github.com/remix-run/remix/pull/8892))
+
+### Updated Dependencies
+
+- [`react-router-dom@6.22.2`](https://github.com/remix-run/react-router/releases/tag/react-router%406.22.2)
+- [`@remix-run/router@1.15.2`](https://github.com/remix-run/react-router/blob/main/packages/router/CHANGELOG.md#1152)
+
+### Changes by Package
+
+- [`create-remix`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/create-remix/CHANGELOG.md#280)
+- [`@remix-run/architect`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-architect/CHANGELOG.md#280)
+- [`@remix-run/cloudflare`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-cloudflare/CHANGELOG.md#280)
+- [`@remix-run/cloudflare-pages`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-cloudflare-pages/CHANGELOG.md#280)
+- [`@remix-run/cloudflare-workers`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-cloudflare-workers/CHANGELOG.md#280)
+- [`@remix-run/css-bundle`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-css-bundle/CHANGELOG.md#280)
+- [`@remix-run/deno`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-deno/CHANGELOG.md#280)
+- [`@remix-run/dev`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-dev/CHANGELOG.md#280)
+- [`@remix-run/eslint-config`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-eslint-config/CHANGELOG.md#280)
+- [`@remix-run/express`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-express/CHANGELOG.md#280)
+- [`@remix-run/node`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-node/CHANGELOG.md#280)
+- [`@remix-run/react`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-react/CHANGELOG.md#280)
+- [`@remix-run/serve`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-serve/CHANGELOG.md#280)
+- [`@remix-run/server-runtime`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-server-runtime/CHANGELOG.md#280)
+- [`@remix-run/testing`](https://github.com/remix-run/remix/blob/remix%402.8.0/packages/remix-testing/CHANGELOG.md#280)
+
+**Full Changelog**: [`v2.7.2...v2.8.0`](https://github.com/remix-run/remix/compare/remix@2.7.2...remix@2.8.0)
+
 ## 2.7.2
 
 Date: 2024-02-21
 
 ### Patch Changes
 
-- Vite: Fix error when building projects with `.css?url` imports ([#8829](https://github.com/remix-run/remix/pull/8829))
+- `@remix-run/dev` - Vite: Fix error when building projects with `.css?url` imports ([#8829](https://github.com/remix-run/remix/pull/8829))
 
 ## 2.7.1
 
@@ -164,8 +1089,7 @@ Date: 2024-02-20
 
 ### Patch Changes
 
-- Fix breaking change for `@remix-run/cloudflare-pages` ([#8819](https://github.com/remix-run/remix/pull/8819))
-  - Restore Cloudflare event context fields in `getLoadContext` argument for backwards compatibility.
+- `@remix-run/cloudflare-pages` - Fix breaking change and restore Cloudflare event context fields in `getLoadContext` argument for backwards compatibility ([#8819](https://github.com/remix-run/remix/pull/8819))
 
 ## v2.7.0
 
@@ -187,7 +1111,7 @@ You can now export an optional `Layout` component from your root route which wil
 
 #### Basename support
 
-React Router has long supported a [`basename`](https://reactrouter.com/en/main/routers/create-browser-router#basename) config that allows you to serve your app within a subpath such as `http://localhost/myapp/*` without having to include the `/myapp` segment in all of your route paths. This was originally omitted from Remix because v1 nested folders file-convention made it pretty easy to put your route files in a `routes/myapp/` folder, giving you the same functionality. There has also been an [open proposal from the community](https://github.com/remix-run/remix/discussions/2891) to add this functionality.
+React Router has long supported a [`basename`](https://reactrouter.com/v6/routers/create-browser-router#basename) config that allows you to serve your app within a subpath such as `http://localhost/myapp/*` without having to include the `/myapp` segment in all of your route paths. This was originally omitted from Remix because v1 nested folders file-convention made it pretty easy to put your route files in a `routes/myapp/` folder, giving you the same functionality. There has also been an [open proposal from the community](https://github.com/remix-run/remix/discussions/2891) to add this functionality.
 
 Two things have since changed that made us reconsider the lack of `basename` support:
 
@@ -245,7 +1169,7 @@ A few notes on the new plugin:
   - This gives parity with the Cloudflare preset for the Remix Vite plugin and keeps our templates leaner
 - `@remix-run/dev` - Vite: Cloudflare Proxy as a Vite plugin ([#8749](https://github.com/remix-run/remix/pull/8749))
   - **⚠️ This is a breaking change for projects relying on Cloudflare support from the unstable Vite plugin**
-- `@remix-run/dev` - Vite: Add a new `basename` option to the Vite plugin, allowing users to set the internal React Router [`basename`](https://reactrouter.com/en/main/routers/create-browser-router#basename) in order to to serve their applications underneath a subpath ([#8145](https://github.com/remix-run/remix/pull/8145))
+- `@remix-run/dev` - Vite: Add a new `basename` option to the Vite plugin, allowing users to set the internal React Router [`basename`](https://reactrouter.com/v6/routers/create-browser-router#basename) in order to to serve their applications underneath a subpath ([#8145](https://github.com/remix-run/remix/pull/8145))
 - `@remix-run/dev` - Vite: Stabilize the Remix Vite plugin, Cloudflare preset, and all related types by removing all `unstable_` / `Unstable_` prefixes ([#8713](https://github.com/remix-run/remix/pull/8713))
   - While this is a breaking change for existing Remix Vite plugin consumers, now that the plugin has stabilized, there will no longer be any breaking changes outside of a major release. Thank you to all of our early adopters and community contributors for helping us get here! 🙏
 - `@remix-run/dev` - Vite: Stabilize "SPA Mode" by renaming the Remix vite plugin config from `unstable_ssr -> ssr` ([#8692](https://github.com/remix-run/remix/pull/8692))
@@ -937,7 +1861,7 @@ function handleClick() {
 
 ### Minor Changes
 
-- Remove the `unstable_` prefix from the [`useBlocker`](https://reactrouter.com/en/main/hooks/use-blocker) hook ([#7882](https://github.com/remix-run/remix/pull/7882))
+- Remove the `unstable_` prefix from the [`useBlocker`](https://reactrouter.com/v6/hooks/use-blocker) hook ([#7882](https://github.com/remix-run/remix/pull/7882))
 - Add `unstable_flushSync` option to `useNavigate`/`useSubmit`/`fetcher.load`/`fetcher.submit` to opt-out of `React.startTransition` and into `ReactDOM.flushSync` for state updates ([#7996](https://github.com/remix-run/remix/pull/7996))
 
 ### Patch Changes
