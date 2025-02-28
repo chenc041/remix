@@ -38,6 +38,20 @@ You can also pass a `Partial<Path>` value:
 />
 ```
 
+### `discover`
+
+Defines the route discovery behavior when using [`future.v3_lazyRouteDiscovery`][lazy-route-discovery].
+
+```tsx
+<>
+  <Link /> {/* defaults to "render" */}
+  <Link discover="none" />
+</>
+```
+
+- **render** - default, discover the route when the link renders
+- **none** - don't eagerly discover, only discover if the link is clicked
+
 ### `prefetch`
 
 Defines the data and module prefetching behavior for the link.
@@ -171,24 +185,23 @@ function SomeComp() {
 
 This state is inaccessible on the server as it is implemented on top of [`history.state`][history-state].
 
-## `unstable_viewTransition`
+## `viewTransition`
 
-The `unstable_viewTransition` prop enables a [View Transition][view-transitions] for this navigation by wrapping the final state update in [`document.startViewTransition()`][document-start-view-transition]:
+The `viewTransition` prop enables a [View Transition][view-transitions] for this navigation by wrapping the final state update in [`document.startViewTransition()`][document-start-view-transition]:
 
 ```jsx
-<Link to={to} unstable_viewTransition>
+<Link to={to} viewTransition>
   Click me
 </Link>
 ```
 
-If you need to apply specific styles for this view transition, you will also need to leverage the [`unstable_useViewTransitionState()`][use-view-transition-state]:
+If you need to apply specific styles for this view transition, you will also need to leverage the [`useViewTransitionState()`][use-view-transition-state]:
 
 ```jsx
 function ImageLink(to) {
-  const isTransitioning =
-    unstable_useViewTransitionState(to);
+  const isTransitioning = useViewTransitionState(to);
   return (
-    <Link to={to} unstable_viewTransition>
+    <Link to={to} viewTransition>
       <p
         style={{
           viewTransitionName: isTransitioning
@@ -212,13 +225,10 @@ function ImageLink(to) {
 }
 ```
 
-<docs-warning>
-Please note that this API is marked unstable and may be subject to breaking changes without a major release.
-</docs-warning>
-
 [scroll-restoration-component]: ./scroll-restoration
 [history-state]: https://developer.mozilla.org/en-US/docs/Web/API/History/state
 [view-transitions]: https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API
 [document-start-view-transition]: https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition
 [use-view-transition-state]: ../hooks/use-view-transition-state
 [relativesplatpath]: ../hooks/use-resolved-path#splat-paths
+[lazy-route-discovery]: ../guides/lazy-route-discovery

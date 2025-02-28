@@ -21,14 +21,17 @@ jobs:
         with:
           token: ${{ secrets.FORMAT_PAT }}
 
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4.0.0
+
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
-          cache: "yarn"
+          cache: "pnpm"
 
       - name: 📥 Install deps
-        run: yarn --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: 🔗 Convert Docs links to references
         run: node scripts/markdown-references.mjs
@@ -37,7 +40,7 @@ jobs:
         run: sort --ignore-case --output contributors.yml contributors.yml
 
       - name: 👔 Format
-        run: yarn format
+        run: pnpm format
 
       - name: 🦕 Install Deno
         uses: denoland/setup-deno@v1
@@ -45,7 +48,7 @@ jobs:
           deno-version: vx.x.x
 
       - name: 👔 Format Deno files
-        run: yarn format:deno
+        run: pnpm format:deno
 
       - name: 💪 Commit
         run: |

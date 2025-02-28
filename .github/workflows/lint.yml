@@ -19,11 +19,14 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4.0.0
+
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
-          cache: "yarn"
+          cache: "pnpm"
 
       - name: Disable GitHub Actions Annotations
         run: |
@@ -32,10 +35,10 @@ jobs:
           echo "::remove-matcher owner=eslint-stylish::"
 
       - name: 📥 Install deps
-        run: yarn --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: 🔬 Lint
-        run: yarn lint
+        run: pnpm lint
 
       - name: 🦕 Install Deno
         uses: denoland/setup-deno@v1
@@ -43,4 +46,4 @@ jobs:
           deno-version: vx.x.x
 
       - name: 🔬 Lint deno files
-        run: yarn lint:deno
+        run: pnpm lint:deno

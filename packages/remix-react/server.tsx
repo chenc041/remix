@@ -9,11 +9,13 @@ import { RemixContext } from "./components";
 import type { EntryContext } from "./entry";
 import { RemixErrorBoundary } from "./errorBoundaries";
 import { createServerRoutes, shouldHydrateRouteLoader } from "./routes";
+import { StreamTransfer } from "./single-fetch";
 
 export interface RemixServerProps {
   context: EntryContext;
   url: string | URL;
   abortDelay?: number;
+  nonce?: string;
 }
 
 /**
@@ -25,6 +27,7 @@ export function RemixServer({
   context,
   url,
   abortDelay,
+  nonce,
 }: RemixServerProps): ReactElement {
   if (typeof url === "string") {
     url = new URL(url);
@@ -71,25 +74,39 @@ export function RemixServer({
   });
 
   return (
-    <RemixContext.Provider
-      value={{
-        manifest,
-        routeModules,
-        criticalCss,
-        serverHandoffString,
-        future: context.future,
-        isSpaMode: context.isSpaMode,
-        serializeError: context.serializeError,
-        abortDelay,
-      }}
-    >
-      <RemixErrorBoundary location={router.state.location}>
-        <StaticRouterProvider
-          router={router}
-          context={context.staticHandlerContext}
-          hydrate={false}
-        />
-      </RemixErrorBoundary>
-    </RemixContext.Provider>
+    <>
+      <RemixContext.Provider
+        value={{
+          manifest,
+          routeModules,
+          criticalCss,
+          serverHandoffString,
+          future: context.future,
+          isSpaMode: context.isSpaMode,
+          serializeError: context.serializeError,
+          abortDelay,
+          renderMeta: context.renderMeta,
+        }}
+      >
+        <RemixErrorBoundary location={router.state.location}>
+          <StaticRouterProvider
+            router={router}
+            context={context.staticHandlerContext}
+            hydrate={false}
+          />
+        </RemixErrorBoundary>
+      </RemixContext.Provider>
+      {context.future.v3_singleFetch && context.serverHandoffStream ? (
+        <React.Suspense>
+          <StreamTransfer
+            context={context}
+            identifier={0}
+            reader={context.serverHandoffStream.getReader()}
+            textDecoder={new TextDecoder()}
+            nonce={nonce}
+          />
+        </React.Suspense>
+      ) : null}
+    </>
   );
 }
