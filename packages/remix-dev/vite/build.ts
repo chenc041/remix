@@ -8,54 +8,16 @@ import {
   type BuildManifest,
   type ServerBundleBuildConfig,
   type ServerBundlesBuildManifest,
+  resolveViteConfig,
+  extractRemixPluginContext,
   configRouteToBranchRoute,
   getServerBuildDirectory,
 } from "./plugin";
-import type { ConfigRoute, RouteManifest } from "../config/routes";
+import type { RouteManifestEntry, RouteManifest } from "../config/routes";
 import invariant from "../invariant";
-import { preloadViteEsm } from "./import-vite-esm-sync";
+import { preloadVite, getVite } from "./vite";
 
-async function resolveViteConfig({
-  configFile,
-  mode,
-  root,
-}: {
-  configFile?: string;
-  mode?: string;
-  root: string;
-}) {
-  let vite = await import("vite");
-
-  // Leverage the Vite config as a way to configure the entire multi-step build
-  // process so we don't need to have a separate Remix config
-  let viteConfig = await vite.resolveConfig(
-    { mode, configFile, root },
-    "build", // command
-    "production", // default mode
-    "production" // default NODE_ENV
-  );
-
-  if (typeof viteConfig.build.manifest === "string") {
-    throw new Error("Custom Vite manifest paths are not supported");
-  }
-
-  return viteConfig;
-}
-
-async function extractRemixPluginContext(viteConfig: Vite.ResolvedConfig) {
-  let ctx = viteConfig["__remixPluginContext" as keyof typeof viteConfig] as
-    | RemixPluginContext
-    | undefined;
-
-  if (!ctx) {
-    console.error(colors.red("Remix Vite plugin not found in Vite config"));
-    process.exit(1);
-  }
-
-  return ctx;
-}
-
-function getAddressableRoutes(routes: RouteManifest): ConfigRoute[] {
+function getAddressableRoutes(routes: RouteManifest): RouteManifestEntry[] {
   let nonAddressableIds = new Set<string>();
 
   for (let id in routes) {
@@ -82,11 +44,11 @@ function getAddressableRoutes(routes: RouteManifest): ConfigRoute[] {
 }
 
 function getRouteBranch(routes: RouteManifest, routeId: string) {
-  let branch: ConfigRoute[] = [];
+  let branch: RouteManifestEntry[] = [];
   let currentRouteId: string | undefined = routeId;
 
   while (currentRouteId) {
-    let route: ConfigRoute = routes[currentRouteId];
+    let route: RouteManifestEntry = routes[currentRouteId];
     invariant(route, `Missing route for ${currentRouteId}`);
     branch.push(route);
     currentRouteId = route.parentId;
@@ -275,19 +237,27 @@ export async function build(
     logLevel,
     minify,
     mode,
-    sourcemapClient = false,
-    sourcemapServer = false,
+    sourcemapClient,
+    sourcemapServer,
   }: ViteBuildOptions
 ) {
   // Ensure Vite's ESM build is preloaded at the start of the process
-  // so it can be accessed synchronously via `importViteEsmSync`
-  await preloadViteEsm();
+  // so it can be accessed synchronously via `getVite`
+  await preloadVite();
 
   let viteConfig = await resolveViteConfig({ configFile, mode, root });
-  let ctx = await extractRemixPluginContext(viteConfig);
+
+  // eslint-disable-next-line prefer-let/prefer-let -- Improve type narrowing
+  const ctx = await extractRemixPluginContext(viteConfig);
+
+  if (!ctx) {
+    console.error(colors.red("Remix Vite plugin not found in Vite config"));
+    process.exit(1);
+  }
+
   let { remixConfig } = ctx;
 
-  let vite = await import("vite");
+  let vite = getVite();
 
   async function viteBuild({
     ssr,
@@ -357,5 +327,6 @@ export async function build(
   await remixConfig.buildEnd?.({
     buildManifest,
     remixConfig,
+    viteConfig,
   });
 }
